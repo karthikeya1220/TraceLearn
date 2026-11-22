@@ -1,169 +1,121 @@
-<div align="center">
-  <br />
-    <a href="https://youtu.be/8DfvwZ812dM" target="_blank">
-      <img src="public/readme/readme-hero.webp" alt="Project Banner">
-    </a>
-  <br />
+# TraceLearn
 
-  <div>
-    <img src="https://img.shields.io/badge/-Next.js-black?style=for-the-badge&logo=nextdotjs&logoColor=white" />
-    <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-    <img src="https://img.shields.io/badge/-shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white" /><br/>
-    <img src="https://img.shields.io/badge/-Sanity-F03E2F?style=for-the-badge&logo=sanity&logoColor=white" />
-    <img src="https://img.shields.io/badge/-Clerk-6C47FF?style=for-the-badge&logo=clerk&logoColor=white" />
-<img src="https://img.shields.io/badge/-PostHog-8B4513?style=for-the-badge&logo=posthog&logoColor=white" />
-    <img src="https://img.shields.io/badge/-CodeRabbit-orange?style=for-the-badge&logo=coderabbit&logoColor=white" />
-    
-  </div>
+An AI-powered video learning platform featuring natural language search and second-accurate video playback, built with Next.js App Router, Sanity CMS, Clerk Authentication, and PostHog Analytics.
 
-  <h3 align="center">Vertex | AI-Powered Learning Platform</h3>
+---
 
-   <div align="center">
-     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/watch?v=XUkNR-JfHwo" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
-    </div>
-</div>
+## Overview
 
-## 📋 <a name="table">Table of Contents</a>
+TraceLearn rethinks educational content discovery. Rather than manually skipping through video courses, learners can execute natural language queries to discover specific concepts and jump directly to the exact second in the lesson video where that topic is taught.
 
-1. ✨ [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🔗 [Assets](#links)
-6. 🚀 [More](#more)
+Course instructors and authors can manage course modules, lessons, video ingestion pipelines, and instructor bios through an isolated Sanity Studio workspace.
 
-## 🚨 Tutorial
+---
 
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>.
+## Key Features
 
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
+- **Intelligent Video Search:** Natural language search powered by Sanity Context MCP and LLM integration, returning grounded results with clickable timestamps that seek directly to relevant video segments.
+- **Structured Course & Curriculum Hierarchy:** High-level courses, ordered modules, and granular lesson documents with rich Portable Text notes, key takeaways, and resources.
+- **Provider-Agnostic Video Playback:** Seamless embeds supporting YouTube, Vimeo, and Bunny players with direct second-seeking query parameters.
+- **Authentication & User Management:** User sign-in, registration, session handling, and protected routes using Clerk.
+- **Learner Progress Tracking:** Per-learner completion state and resume position tracking keyed off Clerk user identities.
+- **Product Telemetry & Analytics:** Client and server event tracking via PostHog for catalog browsing, searches, video watch time, and course completion.
+- **Headless Content Management:** Content authoring in Sanity Studio with live previews, GROQ queries, and end-to-end TypeScript type generation.
 
-<a href="https://youtu.be/8DfvwZ812dM" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
+---
 
-## <a name="introduction">✨ Introduction</a>
+## Tech Stack
 
-Vertex is a production-ready full-stack learning platform designed to revolutionize video content discovery and course administration. On the learner side, users can search video lessons using natural language queries and immediately jump to the exact second where a topic is explained. On the administrative side, authors access a comprehensive management dashboard to curate courses, structure modules, and publish instructor profiles.
+- **Framework:** Next.js (App Router, React 19, Server & Client Components)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS, PostCSS
+- **Headless CMS:** Sanity Studio, `next-sanity`, `@portabletext/react`, `@sanity/image-url`
+- **Authentication:** Clerk (`@clerk/nextjs`)
+- **Product Analytics:** PostHog (`posthog-js`, `posthog-node`)
+- **AI & Context:** Sanity Context MCP, Vercel AI SDK, OpenAI
 
-Beyond its end-user functionality, Vertex showcases a structured agentic engineering workflow. By utilizing custom agent skills, project rules, and context files, developers can stay in control as architects while leveraging AI coding assistants to build complex features with security, speed, and scalability.
+---
 
-If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
+## Project Structure
 
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
-
-## <a name="tech-stack">⚙️ Tech Stack</a>
-
-- **[Next.js](https://nextjs.org/)** is a full-stack React framework providing server-side rendering, static generation, and efficient routing. It serves as the foundation for Vertex, powering both the learner-facing application and the administrative dashboard.
-
-- **[TypeScript](https://www.typescriptlang.org/)** is a strongly typed superset of JavaScript that adds static type definitions to your codebase. It ensures end-to-end type safety across the application, reducing runtime errors and improving developer experience during scaling.
-
-- **[Tailwind CSS](https://tailwindcss.com/)** is a utility-first CSS framework designed for rapid and modern interface design. It handles the styling across all components, delivering clean, responsive UI layouts without bulky standard stylesheets.
-
-- **[Sanity](https://jsm.dev/vertex-sanity)** is a flexible headless content management platform that manages structured schema models. It stores and delivers course content, module hierarchies, video metadata, and instructor profiles through real-time APIs.
-
-- **[Clerk](https://jsm.dev/vertex-clerk)** is an enterprise user management and authentication system for React applications. It handles secure user sign-ups, session persistence, and role-based access controls to separate administrative workflows from learner accounts.
-
-- **[PostHog](https://jsm.dev/vertex-posthog)** is an all-in-one product analytics suite that tracks user interactions and feature usage. It monitors search queries, video lesson interactions, and learner engagement across the platform.
-
-- **[CodeRabbit](https://jsm.dev/vertex-rabbit)** is an AI-powered code review platform that automates pull request analysis. It identifies potential architectural issues and enforces consistency across every automated build.
-
-## <a name="features">🔋 Features</a>
-
-👉 **Intelligent Video Search**: Search video content using plain-English natural language queries to seek directly to the exact second a topic is discussed.
-
-👉 **Author Admin Dashboard**: Comprehensive management interface for course creators to construct modules, arrange lessons, and manage instructor profiles.
-
-👉 **Role-Based Authentication**: Secure authentication powered by Clerk with route protection separating student learning portals from admin features.
-
-👉 **Headless CMS Integration**: Real-time content management powered by Sanity for dynamic catalog management and video metadata updates.
-
-👉 **Product Analytics**: Integrated user tracking and event telemetry powered by PostHog to analyze user behavior and engagement metrics.
-
-👉 **Agentic Engineering Workflow**: Built using custom agent skills, context files, and explicit project rules to maintain structured development without prompt chaos.
-
-And many more, including code architecture and reusability.
-
-## <a name="quick-start">🤸 Quick Start</a>
-
-Follow these steps to set up the project locally on your machine.
-
-**Prerequisites**
-
-Make sure you have the following installed on your machine:
-
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
-
-**Cloning the Repository**
-
-```bash
-git clone https://github.com/jsmastery-pro/vertex-learning-platform.git
-cd vertex-learning-platform
+```text
+TraceLearn/
+├── app/                  # Next.js App Router (pages, layouts, routes, API)
+│   ├── api/              # Server API routes (search, progress, analytics)
+│   ├── courses/          # Course catalog and course detail views
+│   ├── lessons/          # Interactive lesson viewer with video embeds
+│   ├── search/           # Search results page (moments and lessons)
+│   ├── sign-in/          # Authentication pages
+│   └── studio/           # Embedded Studio route
+├── components/           # Reusable UI components
+│   ├── cards/            # Course and lesson cards
+│   ├── course/           # Course page sections and curriculum tree
+│   ├── layout/           # Header, navigation, footer
+│   ├── lesson/           # Lesson player, notes tabs, timestamp navigation
+│   ├── search/           # Search input and result cards
+│   └── ui/               # Core design system primitives
+├── lib/                  # Utilities, formatters, and server helpers
+│   ├── analytics/        # PostHog client/server helpers
+│   ├── search/           # Search MCP and system prompts
+│   └── video.ts          # Video provider parsing and seek helpers
+├── sanity/               # Sanity client, queries, and type definitions
+├── studio/               # Standalone Sanity Studio workspace
+└── public/               # Static assets
 ```
 
-**Installation**
+---
 
-Install the project dependencies using npm:
+## Getting Started
 
-```bash
-npm install
-```
+### Prerequisites
 
-**Set Up Environment Variables**
+- Node.js (v18.18+ or v20+)
+- npm, yarn, or pnpm
+- Git
 
-Create a new file named `.env` in the root of your project and add the following content:
+### Installation
 
-```env
-NEXT_PUBLIC_SANITY_DATASET=
-NEXT_PUBLIC_SANITY_PROJECT_ID=
+1. Clone the repository:
+   ```bash
+   git clone <your-repository-url>
+   cd TraceLearn
+   ```
 
-# Clerk — add your keys from dashboard.clerk.com > API keys.
-# CLERK_SECRET_KEY is server only: never prefix it with NEXT_PUBLIC_.
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
-NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+3. Configure environment variables:
+   Copy `.env.example` to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in your configuration keys:
+   - **Sanity:** Project ID, Dataset name, Viewer API Read Token
+   - **Clerk:** Publishable Key, Secret Key
+   - **PostHog:** Host and Project API Key
+   - **Sanity Context MCP & OpenAI:** MCP URL and API Key
 
-# Server-only. Paste a Viewer token from sanity.io/manage > API > Tokens.
-SANITY_API_READ_TOKEN=
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-# Sanity Context MCP — the search agent's connection (slug applies the
-# sanity.agentContext document). Server only.
-SANITY_CONTEXT_MCP_URL=
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-# OpenAI — powers the search agent. Server only. Paste your key here.
-OPENAI_API_KEY=
-```
+---
 
-Replace the placeholder values with your real credentials. You can get these by signing up at: [**Clerk**](https://jsm.dev/vertex-clerk), [**Sanity**](https://jsm.dev/vertex-sanity), [**PostHog**](https://jsm.dev/vertex-posthog).
+## Scripts
 
-**Running the Project**
+- `npm run dev` - Starts the Next.js development server
+- `npm run build` - Builds the application for production
+- `npm run start` - Starts the production server
+- `npm run lint` - Runs ESLint checks
+- `npm run typegen` - Generates TypeScript definitions from Sanity schemas
 
-```bash
-npm run dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
+## License
 
-## <a name="links">🔗 Assets</a>
-
-Assets and snippets used in the project can be found in the **[video kit](https://jsmastery.com/video-kit/bb6b2872-494c-4420-9a04-60e99dbb12af)**.
-
-<a href="https://jsmastery.com/video-kit/bb6b2872-494c-4420-9a04-60e99dbb12af" target="_blank">
-  <img src="public/readme/readme-videokit.webp" alt="Video Kit Banner">
-</a>
-
-## <a name="more">🚀 More</a>
-
-**Advance your skills with our Pro Course**
-
-Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
-detailed explanations, cool features, and exercises to boost your skills. Give it a go!
-
-<a href="https://jsm.dev/vertex-jsm" target="_blank">
-  <img src="public/readme/readme-jsmpro.webp" alt="Project Banner">
-</a>
+This project is licensed under the MIT License.
