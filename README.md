@@ -76,28 +76,33 @@ TraceLearn/
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone <your-repository-url>
    cd TraceLearn
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Configure environment variables:
    Copy `.env.example` to `.env.local`:
+
    ```bash
    cp .env.example .env.local
    ```
+
    Fill in your configuration keys:
+
    - **Sanity:** Project ID, Dataset name, Viewer API Read Token
    - **Clerk:** Publishable Key, Secret Key
    - **PostHog:** Host and Project API Key
    - **Sanity Context MCP & OpenAI:** MCP URL and API Key
-
 4. Run the development server:
+
    ```bash
    npm run dev
    ```
@@ -113,9 +118,3 @@ TraceLearn/
 - `npm run start` - Starts the production server
 - `npm run lint` - Runs ESLint checks
 - `npm run typegen` - Generates TypeScript definitions from Sanity schemas
-
----
-
-## License
-
-This project is licensed under the MIT License.
