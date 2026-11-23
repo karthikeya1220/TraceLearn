@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
   // Required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
   images: {
+    dangerouslyAllowLocalIP: true,
     // Content images are served from the Sanity asset CDN. Scoped to that host only.
     remotePatterns: [
       {

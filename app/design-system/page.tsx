@@ -33,9 +33,9 @@ import { Pagination } from "@/components/nav/pagination";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Design System · Vertex",
+  title: "Design System · TraceLearn",
   description:
-    "The Poster Studio design language behind Vertex: cobalt and ink on paper, Archivo, hard edges, rules instead of shadows.",
+    "The Poster Studio design language behind TraceLearn: cobalt and ink on paper, Archivo, hard edges, rules instead of shadows.",
 };
 
 /* ---------------------------------------------------------------- layout */

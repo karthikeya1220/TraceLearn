@@ -11,7 +11,7 @@ import { COURSES_LIST_QUERY } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "My Learning",
-  description: "Your enrolled courses, active lessons, and learning progress on Vertex.",
+  description: "Your enrolled courses, active lessons, and learning progress on TraceLearn.",
 };
 
 export default async function MyLearningPage() {

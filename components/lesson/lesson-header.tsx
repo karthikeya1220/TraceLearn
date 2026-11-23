@@ -1,5 +1,6 @@
 import { BarChart3, Clock, type LucideIcon, Users } from "lucide-react";
 import { LessonBookmarkButton } from "@/components/lesson/lesson-bookmark-button";
+import { LessonCompletionToggle } from "@/components/lesson/lesson-completion-toggle";
 import { Badge } from "@/components/ui/badge";
 import { formatCount, formatDuration, formatLevel } from "@/lib/format";
 
@@ -38,11 +39,14 @@ export function LessonHeader({
     <header>
       {label && <Badge variant="video">Lesson {label}</Badge>}
 
-      <div className="mt-5 flex items-start justify-between gap-6">
-        <h1 className="text-heading-1 text-neutral-900 sm:text-display-2">
+      <div className="mt-5 flex flex-wrap items-start justify-between gap-4">
+        <h1 className="text-heading-1 text-neutral-900 sm:text-display-2 flex-1 min-w-[280px]">
           {title}
         </h1>
-        <LessonBookmarkButton lessonSlug={lessonSlug} />
+        <div className="flex items-center gap-3 shrink-0">
+          <LessonCompletionToggle lessonSlug={lessonSlug} />
+          <LessonBookmarkButton lessonSlug={lessonSlug} />
+        </div>
       </div>
 
       {summary && (

@@ -9,7 +9,7 @@ import { SEARCH_QUERY_PARAM, SEARCH_SORT_PARAM } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Search",
-  description: "Search every lesson and video moment on Vertex in plain English.",
+  description: "Search every lesson and video moment on TraceLearn in plain English.",
 };
 
 function firstValue(value: string | string[] | undefined) {
@@ -61,7 +61,7 @@ export default async function SearchPage({
 
           {!query && (
             <p className="mt-4 text-body-lg text-neutral-500">
-              Ask in plain English and Vertex finds the exact lesson and moment.
+              Ask in plain English and TraceLearn finds the exact lesson and moment.
             </p>
           )}
         </div>

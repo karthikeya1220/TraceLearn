@@ -44,7 +44,7 @@ export async function generateMetadata({
 
   return {
     title: instructor.name ?? "Instructor",
-    description: `Courses and profile for ${instructor.name ?? "instructor"} on Vertex.`,
+    description: `Courses and profile for ${instructor.name ?? "instructor"} on TraceLearn.`,
   };
 }
 

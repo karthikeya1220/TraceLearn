@@ -18,7 +18,7 @@ interface NotificationItem {
 const INITIAL_NOTIFICATIONS: NotificationItem[] = [
   {
     id: "1",
-    title: "Welcome to Vertex",
+    title: "Welcome to TraceLearn",
     message: "Search any topic in plain English to jump straight to exact lesson video timestamps.",
     time: "Just now",
     href: searchHref(""),

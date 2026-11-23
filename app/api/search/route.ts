@@ -36,11 +36,15 @@ export const maxDuration = 60;
 const MAX_STEPS = 6;
 
 /**
- * Gemini Flash: fast and cheap with large context, suitable for latency-sensitive
- * search that writes one GROQ query and ranks what comes back. Overridable per deploy
- * via `SEARCH_MODEL` (e.g. gemini-2.5-flash).
+ * Candidate models in priority order: fast, lightweight, and resilient to free-tier quotas.
+ * Overridable per deploy via `SEARCH_MODEL`.
  */
-const DEFAULT_MODEL = "gemini-2.5-flash";
+const CANDIDATE_MODELS = [
+  process.env.SEARCH_MODEL,
+  "gemini-3.5-flash-lite",
+  "gemini-3-flash-preview",
+  "gemini-3.5-flash",
+].filter(Boolean) as string[];
 
 function errorResponse(status: number, error: string) {
   return Response.json({ error }, { status });
@@ -78,25 +82,46 @@ export async function POST(request: NextRequest) {
     ]);
     mcpClient = client;
 
-    // `initial_context` is dropped: its payload is already in the system prompt, so keeping the tool
-    // only invites a redundant round trip (§12 — never hand the model more context than it needs).
+    // Streamlined tools: keeping groq_query drops dozens of KB of unused tool schemas
+    // (schema_explorer, array_field_reader, initial_context) preventing token bloat
+    // and rate-limit spikes (§12 — never hand the model more context than it needs).
     const mcpTools = await mcpClient.tools();
-    const tools = Object.fromEntries(
-      Object.entries(mcpTools).filter(([name]) => name !== "initial_context"),
-    );
+    const tools = mcpTools.groq_query ? { groq_query: mcpTools.groq_query } : mcpTools;
 
     const google = createGoogleGenerativeAI({ apiKey: getGeminiApiKey() });
 
-    const { output } = await generateText({
-      // Built per request so the key is read at call time, not frozen at module load.
-      model: google(process.env.SEARCH_MODEL || DEFAULT_MODEL),
-      system: buildSystemPrompt(initialContext),
-      prompt: buildUserPrompt(query),
-      tools,
-      stopWhen: stepCountIs(MAX_STEPS),
-      output: Output.object({ schema: ModelAnswerSchema }),
-      abortSignal: request.signal,
-    });
+    let lastError: unknown;
+    let generatedOutput: { hits: Parameters<typeof groundHits>[0]; reply: string } | null = null;
+
+    for (const modelName of CANDIDATE_MODELS) {
+      try {
+        const { output } = await generateText({
+          model: google(modelName),
+          system: buildSystemPrompt(initialContext),
+          prompt: buildUserPrompt(query),
+          tools,
+          stopWhen: stepCountIs(MAX_STEPS),
+          output: Output.object({ schema: ModelAnswerSchema }),
+          abortSignal: request.signal,
+          maxRetries: 1,
+        });
+        generatedOutput = output;
+        break;
+      } catch (err) {
+        lastError = err;
+        console.warn(
+          `[api/search] Model ${modelName} failed, trying next fallback:`,
+          err instanceof Error ? err.message : err,
+        );
+        if (request.signal.aborted) break;
+      }
+    }
+
+    if (!generatedOutput) {
+      throw lastError || new Error("All candidate search models failed.");
+    }
+
+    const output = generatedOutput;
 
     const results = await groundHits(output.hits, sort);
 

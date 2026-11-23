@@ -5,6 +5,7 @@ import { ArrowLeft, Check, ChevronDown, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import posthog from "posthog-js";
+import { useLearnerProgress } from "@/components/progress/progress-provider";
 import type { CurriculumModule } from "@/components/lesson/lesson-curriculum";
 import { formatDuration } from "@/lib/format";
 import { courseHref, lessonHref } from "@/lib/routes";
@@ -41,10 +42,17 @@ export function LessonSidebar({
   completedModuleKeys = [],
   className,
 }: LessonSidebarProps) {
+  const { isCompleted } = useLearnerProgress();
   const currentModuleKey = modules.find((module) => module.containsCurrentLesson)?._key;
   const [openKeys, setOpenKeys] = useState<string[]>(currentModuleKey ? [currentModuleKey] : []);
   const panelId = useId();
-  const value = Math.min(100, Math.max(0, Math.round(percentComplete)));
+
+  // Compute live completion from learner progress if available
+  const allLessons = modules.flatMap((module) => module.lessons);
+  const totalLessonsCount = allLessons.length;
+  const completedLessonsCount = allLessons.filter((l) => l.slug && isCompleted(l.slug)).length;
+  const computedPercent = totalLessonsCount > 0 ? (completedLessonsCount / totalLessonsCount) * 100 : percentComplete;
+  const value = Math.min(100, Math.max(0, Math.round(computedPercent)));
 
   const toggle = (module: CurriculumModule) => {
     const isOpen = openKeys.includes(module._key);
@@ -136,6 +144,9 @@ export function LessonSidebar({
               const isCurrent = module.containsCurrentLesson;
               const duration = formatDuration(module.durationSeconds);
               const contentId = `${panelId}-${module._key}`;
+              const isModuleFinished =
+                module.lessons.length > 0 &&
+                module.lessons.every((l) => l.slug && isCompleted(l.slug));
 
               return (
                 <li
@@ -179,7 +190,7 @@ export function LessonSidebar({
                       )}
                     </span>
 
-                    {completedModuleKeys.includes(module._key) && !isCurrent ? (
+                    {(isModuleFinished || completedModuleKeys.includes(module._key)) && !isCurrent ? (
                       <CompletedMark className="mt-0.5 shrink-0" />
                     ) : (
                       <ChevronDown
@@ -197,18 +208,23 @@ export function LessonSidebar({
                     <ul id={contentId} className="pb-3">
                       {module.lessons.map((lesson) => {
                         const lessonDuration = formatDuration(lesson.duration);
+                        const isLessonFinished = lesson.slug ? isCompleted(lesson.slug) : false;
 
                         const row = (
                           <>
                             <span className="relative flex w-7.25 shrink-0 justify-center" aria-hidden>
-                              <span
-                                className={cn(
-                                  "mt-1.5 size-2 rounded-full border",
-                                  lesson.isCurrent
-                                    ? "border-primary-500 bg-primary-500"
-                                    : "border-neutral-300 bg-surface",
-                                )}
-                              />
+                              {isLessonFinished ? (
+                                <CompletedMark className="mt-0.5" />
+                              ) : (
+                                <span
+                                  className={cn(
+                                    "mt-1.5 size-2 rounded-full border",
+                                    lesson.isCurrent
+                                      ? "border-primary-500 bg-primary-500"
+                                      : "border-neutral-300 bg-surface",
+                                  )}
+                                />
+                              )}
                             </span>
                             <span className="min-w-0 flex-1">
                               <span
@@ -216,6 +232,8 @@ export function LessonSidebar({
                                   "block text-[14px] leading-5",
                                   lesson.isCurrent
                                     ? "font-semibold text-primary-600"
+                                    : isLessonFinished
+                                    ? "text-neutral-500 line-through"
                                     : "text-neutral-700",
                                 )}
                               >

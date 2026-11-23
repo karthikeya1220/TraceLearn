@@ -91,9 +91,12 @@ export default async function CoursePage({ params }: PageProps<"/courses/[slug]"
         </div>
 
         <CourseProgressBar
-          percentComplete={0}
           continueHref={continueHref}
           courseSlug={slug}
+          lessonSlugs={modules
+            .flatMap((module) => module.lessons ?? [])
+            .map((lesson) => lesson.slug)
+            .filter((slug): slug is string => typeof slug === "string")}
           className="mt-14"
         />
       </main>

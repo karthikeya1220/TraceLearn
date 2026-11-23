@@ -15,7 +15,7 @@ export function LogoMark({ size = 28, className }: Omit<LogoProps, "showWordmark
       viewBox="0 0 28 28"
       fill="none"
       role="img"
-      aria-label="Vertex"
+      aria-label="TraceLearn"
       className={cn("shrink-0", className)}
     >
       {/* Outer downward triangle */}
@@ -40,7 +40,7 @@ export function Logo({ size = 28, showWordmark = true, className }: LogoProps) {
             fontStretch: "112%",
           }}
         >
-          Vertex
+          TraceLearn
         </span>
       )}
     </span>

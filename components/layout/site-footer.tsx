@@ -21,7 +21,7 @@ export function SiteFooter() {
             from first principles to production.
           </p>
           <p className="text-[12px] leading-5 text-neutral-400">
-            © {currentYear} Vertex. All rights reserved.
+            © {currentYear} TraceLearn. All rights reserved.
           </p>
         </div>
 

@@ -7,8 +7,8 @@ import {schema} from './schemaTypes'
 import {structure} from './structure'
 
 export default defineConfig({
-  name: 'vertex',
-  title: 'Vertex',
+  name: 'tracelearn',
+  title: 'TraceLearn',
   projectId,
   dataset,
   schema,

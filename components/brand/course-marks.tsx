@@ -19,7 +19,7 @@ export function NextjsMark({ size = 72, className }: MarkProps) {
       className={cn("shrink-0", className)}
     >
       <defs>
-        <linearGradient id="vertex-nextjs-stem" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="tracelearn-nextjs-stem" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#FFFFFF" />
           <stop offset="70%" stopColor="#FFFFFF" stopOpacity="0" />
         </linearGradient>
@@ -27,7 +27,7 @@ export function NextjsMark({ size = 72, className }: MarkProps) {
       <rect width="72" height="72" rx="0" fill="#0A0A0A" />
       <path d="M21 19h6v34h-6V19Z" fill="#FFFFFF" />
       <path d="M21 19h7l23 34h-7L21 19Z" fill="#FFFFFF" />
-      <path d="M45 19h6v26h-6V19Z" fill="url(#vertex-nextjs-stem)" />
+      <path d="M45 19h6v26h-6V19Z" fill="url(#tracelearn-nextjs-stem)" />
     </svg>
   );
 }
