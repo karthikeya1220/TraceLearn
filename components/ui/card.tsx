@@ -6,12 +6,12 @@ interface CardProps {
   className?: string;
 }
 
-/** Shared card surface: paper-white, 1px ink rule, zero radius, no shadow. */
+/** Shared card surface: refined border, ambient shadow, subtle micro-lift on hover. */
 export function Card({ children, className }: CardProps) {
   return (
     <div
       className={cn(
-        "flex flex-col rounded-none border border-neutral-900 bg-surface p-5",
+        "flex flex-col rounded-lg border border-neutral-200/90 bg-surface p-5 shadow-xs transition-all duration-200 hover:border-neutral-300 hover:shadow-md",
         className,
       )}
     >

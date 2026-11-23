@@ -45,12 +45,12 @@ export function SearchInput({
       </label>
       <div
         className={cn(
-          "flex items-center rounded-none border border-neutral-900 bg-surface focus-within:border-primary-500",
+          "flex items-center rounded-lg border border-neutral-200 bg-surface shadow-xs transition-all duration-150 focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/20",
           fields[size],
         )}
       >
         <Search
-          className={cn("shrink-0 text-neutral-900", icons[size])}
+          className={cn("shrink-0 text-neutral-400 transition-colors group-focus-within:text-primary-500", icons[size])}
           strokeWidth={2}
           aria-hidden
         />

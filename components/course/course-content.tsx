@@ -60,7 +60,7 @@ export function CourseContent({ modules, durationSeconds }: CourseContentProps) 
       </div>
 
       {/* The toggle straddles the panel's bottom border, so the panel keeps clearance for it. */}
-      <ul className={cn("mt-6 rounded-none border border-neutral-900", isTruncated && "pb-4")}>
+      <ul className={cn("mt-6 overflow-hidden rounded-lg border border-neutral-200/90 bg-surface shadow-xs", isTruncated && "pb-4")}>
         {visible.map((module, moduleIndex) => {
           const key = module._key;
           const isOpen = openKeys.includes(key);
@@ -69,20 +69,20 @@ export function CourseContent({ modules, durationSeconds }: CourseContentProps) 
           const contentId = `${panelId}-${key}`;
 
           return (
-            <li key={key} className="border-b border-neutral-200 last:border-b-0">
+            <li key={key} className="border-b border-neutral-200/80 last:border-b-0">
               <button
                 type="button"
                 onClick={() => toggle(key, module.title ?? null, moduleIndex)}
                 aria-expanded={isOpen}
                 aria-controls={contentId}
-                className="flex w-full items-center gap-5 px-5 py-3.5 text-left transition-colors hover:bg-primary-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset sm:px-7"
+                className="flex w-full items-center gap-5 px-5 py-3.5 text-left transition-colors hover:bg-neutral-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset sm:px-7"
               >
                 <span className="relative flex shrink-0 justify-center" aria-hidden>
-                  <span className="flex size-7.25 items-center justify-center rounded-none border border-neutral-900 bg-canvas text-[13px] leading-none font-semibold tabular-nums text-neutral-900">
+                  <span className="flex size-7 items-center justify-center rounded-full border border-neutral-200 bg-neutral-50 text-[12px] leading-none font-semibold tabular-nums text-neutral-800">
                     {moduleIndex + 1}
                   </span>
                   {moduleIndex < visible.length - 1 && !isOpen && (
-                    <span className="absolute top-full left-1/2 h-8 w-px -translate-x-1/2 bg-neutral-900" />
+                    <span className="absolute top-full left-1/2 h-8 w-px -translate-x-1/2 bg-neutral-200" />
                   )}
                 </span>
 

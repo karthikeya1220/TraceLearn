@@ -5,22 +5,22 @@ export type ButtonVariant = "primary" | "secondary" | "tertiary" | "text";
 export type ButtonSize = "xl" | "lg" | "md";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-none font-sans font-semibold whitespace-nowrap " +
-  "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 " +
-  "focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center gap-2 rounded-md font-sans font-semibold whitespace-nowrap " +
+  "transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 " +
+  "focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:active:scale-100";
 
 const sizes: Record<ButtonSize, string> = {
   /** Hero call to action. */
-  xl: "h-16 gap-4 px-7 text-[17px]",
-  lg: "h-11 px-4 text-[16px]",
-  md: "h-11 px-3 text-[14px]",
+  xl: "h-14 gap-3 px-7 text-[16px] shadow-sm",
+  lg: "h-10 px-4 text-[15px] shadow-xs",
+  md: "h-9 px-3 text-[14px]",
 };
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-primary-500 text-white",
-  secondary: "border border-primary-500 bg-transparent text-primary-500",
-  tertiary: "border border-neutral-900 bg-surface text-neutral-900",
-  text: "px-0 text-primary-500",
+  primary: "bg-primary-500 text-white shadow-xs hover:bg-primary-600 active:bg-primary-700",
+  secondary: "border border-primary-500/80 bg-primary-50/40 text-primary-600 hover:bg-primary-100/70 hover:border-primary-600",
+  tertiary: "border border-neutral-200 bg-surface text-neutral-900 shadow-xs hover:bg-neutral-50 hover:border-neutral-300",
+  text: "px-0 text-primary-500 hover:text-primary-600 shadow-none",
 };
 
 const hoverVariants: Record<ButtonVariant, string> = {

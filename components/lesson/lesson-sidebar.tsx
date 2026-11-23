@@ -203,10 +203,10 @@ export function LessonSidebar({
                             <span className="relative flex w-7.25 shrink-0 justify-center" aria-hidden>
                               <span
                                 className={cn(
-                                  "mt-1.5 size-2 rounded-none border",
+                                  "mt-1.5 size-2 rounded-full border",
                                   lesson.isCurrent
                                     ? "border-primary-500 bg-primary-500"
-                                    : "border-neutral-300 bg-canvas",
+                                    : "border-neutral-300 bg-surface",
                                 )}
                               />
                             </span>
@@ -215,7 +215,7 @@ export function LessonSidebar({
                                 className={cn(
                                   "block text-[14px] leading-5",
                                   lesson.isCurrent
-                                    ? "font-semibold text-neutral-900"
+                                    ? "font-semibold text-primary-600"
                                     : "text-neutral-700",
                                 )}
                               >
@@ -224,7 +224,7 @@ export function LessonSidebar({
                               <span
                                 className={cn(
                                   "mt-1 block text-[13px] leading-5 tabular-nums",
-                                  lesson.isCurrent ? "text-primary-500" : "text-neutral-500",
+                                  lesson.isCurrent ? "font-medium text-primary-500" : "text-neutral-500",
                                 )}
                               >
                                 {lesson.isCurrent ? "Now playing" : lessonDuration}
@@ -232,10 +232,10 @@ export function LessonSidebar({
                             </span>
                             {lesson.isCurrent && (
                               <span
-                                className="flex size-7 shrink-0 items-center justify-center rounded-none bg-primary-500 text-white"
+                                className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary-500 text-white shadow-xs"
                                 aria-hidden
                               >
-                                <Play className="size-3.5 fill-current" strokeWidth={2} />
+                                <Play className="size-3 fill-current translate-x-px" strokeWidth={2} />
                               </span>
                             )}
                           </>

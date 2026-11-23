@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 export type BadgeVariant = "video" | "lesson" | "popular";
 
 const variants: Record<BadgeVariant, string> = {
-  video: "bg-neutral-900 text-white font-semibold",
-  lesson: "bg-lesson-bg text-lesson-fg font-semibold",
-  popular: "border border-neutral-900 bg-transparent text-primary-600 font-semibold",
+  video: "bg-neutral-900 text-white border border-neutral-800 shadow-xs",
+  lesson: "bg-primary-50 text-primary-700 border border-primary-200/80",
+  popular: "border border-amber-200 bg-amber-50/70 text-amber-800",
 };
 
 interface BadgeProps {
@@ -19,7 +19,7 @@ export function Badge({ variant = "video", children, className }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex w-fit items-center rounded-none px-2 py-1 text-[12px] leading-4 font-semibold uppercase tracking-[0.08em]",
+        "inline-flex w-fit items-center rounded-sm px-2.5 py-0.5 text-[11px] leading-4 font-semibold uppercase tracking-[0.06em]",
         variants[variant],
         className,
       )}
