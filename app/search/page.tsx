@@ -3,6 +3,7 @@ import { PageFrame } from "@/components/layout/page-frame";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SearchForm } from "@/components/search/search-form";
 import { SearchResults } from "@/components/search/search-results";
+import { SearchSuggestions } from "@/components/search/search-suggestions";
 import { MAX_QUERY_LENGTH, SORTS, type SearchSort } from "@/lib/search/types";
 import { SEARCH_QUERY_PARAM, SEARCH_SORT_PARAM } from "@/lib/routes";
 
@@ -75,7 +76,10 @@ export default async function SearchPage({
             searchField={searchField}
           />
         ) : (
-          searchField
+          <div className="flex flex-col items-center">
+            {searchField}
+            <SearchSuggestions variant="page" className="mt-6 justify-center" />
+          </div>
         )}
       </main>
     </PageFrame>

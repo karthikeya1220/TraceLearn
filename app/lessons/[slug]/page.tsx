@@ -79,6 +79,9 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
 
   const keyPoints = lesson.keyPoints ?? [];
   const resources = lesson.resources ?? [];
+  const videoDetail = (lesson as { videoDetail?: { chapters?: { _key: string; startSeconds: number | null; label: string | null }[]; chunks?: { _key: string; startSeconds: number | null; text: string | null }[] } }).videoDetail;
+  const chapters = videoDetail?.chapters ?? [];
+  const chunks = videoDetail?.chunks ?? [];
 
   return (
     <PageFrame>
@@ -154,7 +157,12 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
               durationSeconds={lesson.duration}
             />
 
-            <LessonTabs lessonSlug={slug}>
+            <LessonTabs
+              lessonSlug={slug}
+              chapters={chapters}
+              chunks={chunks}
+              startSeconds={startSeconds}
+            >
               <div className="flex flex-col gap-8">
                 {body && (
                   <section aria-labelledby="lesson-overview">

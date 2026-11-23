@@ -1,6 +1,6 @@
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
-import { Bell } from "lucide-react";
 import { Navbar } from "@/components/nav/navbar";
+import { NotificationsPopover } from "@/components/layout/notifications-popover";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -21,13 +21,7 @@ export function SiteHeader({ activeHref, className }: SiteHeaderProps) {
       <Navbar activeHref={activeHref} />
       <div className="ml-auto flex items-center gap-5">
         <Show when="signed-in">
-          <button
-            type="button"
-            aria-label="Notifications"
-            className="rounded-xs text-neutral-900 transition-colors hover:text-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-          >
-            <Bell className="size-6" strokeWidth={2} aria-hidden />
-          </button>
+          <NotificationsPopover />
           <UserButton
             appearance={{ elements: { avatarBox: "size-10 rounded-none", avatarImage: "rounded-none" } }}
           />

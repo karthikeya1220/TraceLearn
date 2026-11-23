@@ -1,10 +1,12 @@
 import { BarChart3, Clock, FileText, type LucideIcon, Users } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import type { COURSE_BY_SLUG_QUERY_RESULT } from "@/sanity.types";
 import { Badge } from "@/components/ui/badge";
 import { CourseHeroActions } from "@/components/course/course-hero-actions";
 import { urlFor } from "@/sanity/lib/image";
 import { formatCount, formatDuration, formatLevel, pluralize } from "@/lib/format";
+import { instructorHref } from "@/lib/routes";
 
 type Course = NonNullable<COURSE_BY_SLUG_QUERY_RESULT>;
 
@@ -20,6 +22,7 @@ export function CourseHero({ course, continueHref }: CourseHeroProps) {
   const duration = formatDuration(course.durationSeconds);
   const modules = course.moduleCount ? pluralize(course.moduleCount, "module") : null;
   const students = formatCount(course.studentCount);
+  const instructor = course.instructorDetail;
 
   const meta: { icon: LucideIcon; label: string }[] = [];
   if (level) meta.push({ icon: BarChart3, label: level });
@@ -51,8 +54,37 @@ export function CourseHero({ course, continueHref }: CourseHeroProps) {
           <p className="mt-6 max-w-[46ch] text-body-lg text-neutral-700">{course.summary}</p>
         )}
 
+        {instructor && instructor.name && instructor.slug && (
+          <div className="mt-6 flex items-center gap-3">
+            <Link
+              href={instructorHref(instructor.slug)}
+              className="group flex items-center gap-3 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            >
+              {instructor.photo?.asset ? (
+                <Image
+                  src={urlFor(instructor.photo).width(72).height(72).fit("crop").url()}
+                  alt={instructor.name}
+                  width={36}
+                  height={36}
+                  className="size-9 rounded-full border border-neutral-900 object-cover"
+                />
+              ) : (
+                <span className="flex size-9 items-center justify-center rounded-full bg-neutral-900 text-[14px] font-bold text-white">
+                  {instructor.name.charAt(0)}
+                </span>
+              )}
+              <div className="flex flex-col">
+                <span className="text-[12px] font-medium text-neutral-500">Taught by</span>
+                <span className="text-body font-semibold text-neutral-900 group-hover:text-primary-500">
+                  {instructor.name}
+                </span>
+              </div>
+            </Link>
+          </div>
+        )}
+
         {meta.length > 0 && (
-          <ul className="mt-11 flex flex-wrap items-center gap-x-9 gap-y-3">
+          <ul className="mt-9 flex flex-wrap items-center gap-x-9 gap-y-3">
             {meta.map(({ icon: Icon, label }) => (
               <li
                 key={label}

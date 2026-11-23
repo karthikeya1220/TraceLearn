@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SearchForm } from "@/components/search/search-form";
+import { SearchSuggestions } from "@/components/search/search-suggestions";
 import { buttonClasses } from "@/components/ui/button";
 
 /**
@@ -50,6 +51,7 @@ export function Hero() {
           placeholder="e.g. how do I cache fetched data?"
           className="mt-3.5 w-full"
         />
+        <SearchSuggestions variant="hero" className="mt-4" />
       </div>
     </section>
   );

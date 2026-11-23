@@ -94,6 +94,10 @@ export const LESSON_BY_SLUG_QUERY = defineQuery(`
     keyPoints,
     proTip,
     resources[]{_key, type, title, description, url},
+    "videoDetail": *[_type == "video" && url == ^.videoUrl][0]{
+      chapters[]{_key, startSeconds, label},
+      chunks[]{_key, startSeconds, text}
+    },
     "course": *[_type == "course" && references(^._id)][0]{
       _id,
       title,

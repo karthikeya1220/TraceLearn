@@ -1,9 +1,14 @@
 /** The site's URL shapes, in one place so links stay consistent as routes land. */
 
 export const coursesHref = "/courses";
+export const myLearningHref = "/my-learning";
 
 export function courseHref(slug: string) {
   return `/courses/${slug}`;
+}
+
+export function instructorHref(slug: string) {
+  return `/instructors/${slug}`;
 }
 
 /**
