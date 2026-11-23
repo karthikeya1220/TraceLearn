@@ -27,7 +27,7 @@ export function LessonFooterNav({
     <nav
       aria-label="Lesson navigation"
       className={cn(
-        "flex flex-col gap-4 border-t border-canvas-line px-6 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-8",
+        "flex flex-col gap-4 border-t border-neutral-900 px-6 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-8",
         className,
       )}
     >
@@ -40,7 +40,7 @@ export function LessonFooterNav({
             direction="previous"
             className={buttonClasses({
               variant: "tertiary",
-              className: "h-12 shrink-0 border-canvas-line bg-canvas px-5 text-[15px]",
+              className: "h-12 shrink-0 px-5 text-[15px]",
             })}
           >
             <ArrowLeft className="size-4" strokeWidth={2} aria-hidden />

@@ -24,7 +24,7 @@ export function NextjsMark({ size = 72, className }: MarkProps) {
           <stop offset="70%" stopColor="#FFFFFF" stopOpacity="0" />
         </linearGradient>
       </defs>
-      <rect width="72" height="72" rx="16" fill="#0A0A0A" />
+      <rect width="72" height="72" rx="0" fill="#0A0A0A" />
       <path d="M21 19h6v34h-6V19Z" fill="#FFFFFF" />
       <path d="M21 19h7l23 34h-7L21 19Z" fill="#FFFFFF" />
       <path d="M45 19h6v26h-6V19Z" fill="url(#vertex-nextjs-stem)" />
@@ -35,7 +35,7 @@ export function NextjsMark({ size = 72, className }: MarkProps) {
 /** The Docker whale, simplified: container stack on a whale body. */
 export function DockerMark({ size = 72, className }: MarkProps) {
   const box = (x: number, y: number) => (
-    <rect key={`${x}-${y}`} x={x} y={y} width="9" height="9" rx="1" fill="#2496ED" />
+    <rect key={`${x}-${y}`} x={x} y={y} width="9" height="9" rx="0" fill="#2496ED" />
   );
 
   return (
@@ -77,7 +77,7 @@ export function TypeScriptMark({ size = 72, className }: MarkProps) {
       role="img"
       aria-label="TypeScript"
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-lg bg-[#3178C6] font-sans font-bold text-white",
+        "flex shrink-0 items-center justify-center rounded-none bg-[#3178C6] font-sans font-extrabold text-white",
         className,
       )}
       style={{ width: size, height: size, fontSize: size * 0.42, lineHeight: 1 }}

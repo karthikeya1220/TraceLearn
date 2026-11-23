@@ -44,7 +44,7 @@ export function CourseGrid({ courses, limit }: CourseGridProps) {
                   />
                 ) : undefined
               }
-              className="min-w-0 flex-1 border-canvas-line shadow-none transition-shadow hover:shadow-md"
+              className="min-w-0 flex-1 transition-colors hover:bg-primary-100"
             />
           </Link>
         </li>

@@ -11,7 +11,7 @@ interface CourseIconProps {
 
 /** The small square course tile shown beside the course name on every search result. */
 export function CourseIcon({ iconRef, courseTitle, className }: CourseIconProps) {
-  const classes = cn("size-6 shrink-0 overflow-hidden rounded-[6px]", className);
+  const classes = cn("size-6 shrink-0 overflow-hidden rounded-none", className);
 
   if (!iconRef) {
     return (
@@ -19,7 +19,7 @@ export function CourseIcon({ iconRef, courseTitle, className }: CourseIconProps)
         aria-hidden
         className={cn(
           classes,
-          "flex items-center justify-center bg-neutral-900 font-display text-[13px] leading-none font-bold text-white",
+          "flex items-center justify-center bg-neutral-900 text-[13px] leading-none font-extrabold text-white [font-stretch:112%]",
         )}
       >
         {courseTitle.charAt(0)}

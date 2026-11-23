@@ -31,7 +31,7 @@ export function VideoResultCard({
       title={result.lessonTitle}
       description={result.reason}
       media={
-        <div className="relative aspect-video w-full overflow-hidden rounded-md bg-neutral-900">
+        <div className="relative aspect-video w-full overflow-hidden rounded-none border border-neutral-900 bg-neutral-900">
           {result.thumbnailRef && (
             <Image
               src={urlFor(result.thumbnailRef).width(720).height(405).fit("crop").url()}
@@ -42,12 +42,12 @@ export function VideoResultCard({
             />
           )}
           <span className="absolute inset-0 flex items-center justify-center">
-            <span className="flex size-11 items-center justify-center rounded-full bg-white/95 shadow-md">
+            <span className="flex size-11 items-center justify-center rounded-none bg-white">
               <Play className="size-5 translate-x-px fill-neutral-900 text-neutral-900" aria-hidden />
             </span>
           </span>
           {duration && (
-            <span className="absolute right-2.5 bottom-2.5 rounded-xs bg-neutral-900/85 px-2 py-1 text-small font-medium text-white">
+            <span className="absolute right-2.5 bottom-2.5 rounded-none bg-neutral-900 px-2 py-1 text-small font-semibold tabular-nums text-white">
               {duration}
             </span>
           )}
@@ -57,7 +57,7 @@ export function VideoResultCard({
         <>
           <span className="inline-flex items-center gap-1.5">
             <FileText className="size-4 shrink-0 text-neutral-500" strokeWidth={2} aria-hidden />
-            Lesson {result.label}
+            Lesson <span className="tabular-nums">{result.label}</span>
           </span>
           {result.moduleTitle && (
             <>

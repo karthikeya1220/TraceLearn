@@ -9,16 +9,16 @@ import { coursesHref } from "@/lib/routes";
  */
 export function SearchEmptyState() {
   return (
-    <div className="flex flex-col items-start justify-between gap-5 rounded-lg border border-primary-200 bg-primary-100 p-5 sm:flex-row sm:items-center sm:gap-8 sm:p-6">
+    <div className="flex flex-col items-start justify-between gap-5 rounded-none bg-primary-500 p-5 sm:flex-row sm:items-center sm:gap-8 sm:p-6">
       <div className="flex min-w-0 items-center gap-4">
-        <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-200">
+        <span className="flex size-11 shrink-0 items-center justify-center rounded-none bg-white">
           <Search className="size-5 text-primary-500" strokeWidth={2} aria-hidden />
         </span>
         <div className="min-w-0">
-          <p className="text-body-lg font-semibold text-neutral-900">
+          <p className="text-body-lg font-semibold text-white">
             Can&rsquo;t find what you&rsquo;re looking for?
           </p>
-          <p className="mt-1 text-body text-neutral-500">
+          <p className="mt-1 text-body text-white/85">
             Try different keywords or browse our full course catalog.
           </p>
         </div>

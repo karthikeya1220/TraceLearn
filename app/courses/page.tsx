@@ -36,11 +36,9 @@ export default async function CoursesPage() {
         <Breadcrumbs items={[{ label: "All Courses" }]} />
 
         <div className="mt-10 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-          <h1 className="font-display text-[38px] leading-11 font-bold text-neutral-900">
-            All Courses
-          </h1>
+          <h1 className="text-heading-1 text-neutral-900 sm:text-display-2">All Courses</h1>
           {courses.length > 0 && (
-            <p className="text-[13px] leading-5 text-neutral-500">
+            <p className="text-[13px] leading-5 tabular-nums text-neutral-500">
               {pluralize(courses.length, "course")}
             </p>
           )}

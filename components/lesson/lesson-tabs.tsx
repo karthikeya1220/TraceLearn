@@ -46,7 +46,7 @@ export function LessonTabs({ children, lessonSlug }: LessonTabsProps) {
 
   return (
     <div>
-      <div role="tablist" aria-label="Lesson" onKeyDown={onKeyDown} className="flex gap-8 border-b border-canvas-line">
+      <div role="tablist" aria-label="Lesson" onKeyDown={onKeyDown} className="flex gap-8 border-b border-neutral-900">
         {TABS.map((tab) => {
           const isActive = tab.id === active;
           return (
@@ -65,7 +65,7 @@ export function LessonTabs({ children, lessonSlug }: LessonTabsProps) {
               className={cn(
                 "-mb-px border-b-2 px-1 pb-3 text-[15px] leading-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
                 isActive
-                  ? "border-primary-500 font-medium text-primary-500"
+                  ? "border-primary-500 font-semibold text-primary-500"
                   : "border-transparent text-neutral-500 hover:text-neutral-900",
               )}
             >
@@ -93,9 +93,9 @@ export function LessonTabs({ children, lessonSlug }: LessonTabsProps) {
         tabIndex={0}
         className="pt-8"
       >
-        <div className="flex flex-col items-center gap-3 rounded-md border border-dashed border-canvas-line px-6 py-14 text-center">
+        <div className="flex flex-col items-center gap-3 rounded-none border border-dashed border-neutral-900 px-6 py-14 text-center">
           <NotebookPen className="size-6 text-neutral-300" strokeWidth={2} aria-hidden />
-          <p className="text-[15px] leading-6 font-medium text-neutral-900">
+          <p className="text-[15px] leading-6 font-semibold text-neutral-900">
             Your notes will live here
           </p>
           <p className="max-w-80 text-[14px] leading-6 text-neutral-500">

@@ -143,7 +143,7 @@ export function SearchResults({ query, sort, searchField }: SearchResultsProps) 
 
   return (
     <>
-      <p className="mt-4 text-center text-body-lg text-neutral-500">
+      <p className="mt-4 text-center text-body-lg tabular-nums text-neutral-500">
         Found {pluralize(response.count, "result")} across{" "}
         {pluralize(response.courseCount, "course")}
       </p>
@@ -151,7 +151,7 @@ export function SearchResults({ query, sort, searchField }: SearchResultsProps) 
       {searchField}
 
       <div className="mt-9 flex flex-wrap items-center justify-between gap-4">
-        <p className="text-[15px] leading-6 font-medium text-neutral-900">
+        <p className="text-[15px] leading-6 font-semibold tabular-nums text-neutral-900">
           {pluralize(response.count, "result")}
         </p>
         <Select
@@ -190,7 +190,7 @@ export function SearchResults({ query, sort, searchField }: SearchResultsProps) 
 /** Matches the card silhouette so the list does not jump when results arrive. */
 function ResultSkeleton() {
   return (
-    <div className="flex animate-pulse flex-col gap-4 rounded-lg border border-neutral-200 bg-surface p-4 shadow-sm sm:flex-row sm:gap-6">
+    <div className="flex animate-pulse flex-col gap-4 rounded-none border border-neutral-900 bg-surface p-4 sm:flex-row sm:gap-6">
       <div className="aspect-video w-full shrink-0 rounded-md bg-neutral-100 sm:w-69" />
       <div className="flex flex-1 flex-col gap-3 py-1">
         <div className="h-5 w-40 rounded-xs bg-neutral-100" />

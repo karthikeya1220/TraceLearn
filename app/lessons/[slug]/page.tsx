@@ -97,7 +97,7 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
             courseImageAlt={course.coverImage?.alt ?? course.title ?? ""}
             modules={curriculum.modules}
             percentComplete={0}
-            className="border-b border-canvas-line lg:w-69.5 lg:shrink-0 lg:border-r lg:border-b-0"
+            className="border-b border-neutral-900 lg:w-69.5 lg:shrink-0 lg:border-r lg:border-b-0"
           />
         )}
 
@@ -158,10 +158,7 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
               <div className="flex flex-col gap-8">
                 {body && (
                   <section aria-labelledby="lesson-overview">
-                    <h2
-                      id="lesson-overview"
-                      className="font-display text-[20px] leading-7 font-bold text-neutral-900"
-                    >
+                    <h2 id="lesson-overview" className="text-heading-3 text-neutral-900">
                       Overview
                     </h2>
                     <div className="mt-4">
@@ -172,7 +169,7 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
 
                 {keyPoints.length > 0 && (
                   <>
-                    <hr className="border-canvas-line" />
+                    <hr className="border-neutral-200" />
                     <LessonKeyPoints points={keyPoints} />
                   </>
                 )}
@@ -181,7 +178,7 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
 
                 {resources.length > 0 && (
                   <>
-                    <hr className="border-canvas-line" />
+                    <hr className="border-neutral-200" />
                     <LessonResources resources={resources} lessonSlug={slug} />
                   </>
                 )}

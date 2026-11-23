@@ -44,11 +44,11 @@ export default async function SearchPage({
 
       <main className="flex flex-1 flex-col px-6 pt-12 pb-16 sm:px-12 xl:px-18 xl:pb-20">
         <div className="flex flex-col items-center text-center">
-          <p className="rounded-sm border border-canvas-line bg-surface px-4 py-2 text-[11px] leading-4 font-semibold tracking-[0.16em] text-primary-500 uppercase">
+          <p className="bg-neutral-900 px-3 py-1.5 text-[12px] leading-4 font-semibold tracking-[0.08em] text-white uppercase">
             Search results
           </p>
 
-          <h1 className="mt-6 max-w-[22ch] font-display text-[32px] leading-[1.2] font-bold text-balance text-neutral-900 sm:text-[40px] lg:text-[44px]">
+          <h1 className="mt-6 max-w-[22ch] text-display-2 text-neutral-900 sm:text-display-1">
             {query ? (
               <>
                 Results for <span className="text-primary-500">&ldquo;{query}&rdquo;</span>

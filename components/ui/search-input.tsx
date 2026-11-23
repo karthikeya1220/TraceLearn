@@ -45,7 +45,7 @@ export function SearchInput({
       </label>
       <div
         className={cn(
-          "flex items-center rounded-md border border-neutral-200 bg-surface focus-within:border-primary-400",
+          "flex items-center rounded-none border border-neutral-900 bg-surface focus-within:border-primary-500",
           fields[size],
         )}
       >
@@ -67,7 +67,7 @@ export function SearchInput({
         {shortcut && (
           <kbd
             className={cn(
-              "hidden shrink-0 rounded-xs border border-neutral-200 font-sans text-neutral-700 sm:block",
+              "hidden shrink-0 rounded-none border border-neutral-900 font-sans text-neutral-700 sm:block",
               size === "lg" ? "px-3 py-2 text-[14px] leading-5" : "px-2 py-1 text-[12px] leading-4",
             )}
           >

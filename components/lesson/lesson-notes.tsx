@@ -11,22 +11,20 @@ const components: PortableTextComponents = {
       <p className="text-[15px] leading-[28px] text-neutral-700">{children}</p>
     ),
     h2: ({ children }) => (
-      <h3 className="mt-8 font-display text-[20px] leading-7 font-bold text-neutral-900">
-        {children}
-      </h3>
+      <h3 className="mt-8 text-heading-3 text-neutral-900">{children}</h3>
     ),
     h3: ({ children }) => (
       <h4 className="mt-6 text-[16px] leading-6 font-semibold text-neutral-900">{children}</h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-primary-500 pl-4 text-[15px] leading-[28px] text-neutral-700 italic">
+      <blockquote className="border-l-2 border-neutral-900 pl-4 text-[15px] leading-[28px] text-neutral-700 italic">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc pl-5 text-[15px] leading-[28px] text-neutral-700 marker:text-primary-500">
+      <ul className="list-disc pl-5 text-[15px] leading-[28px] text-neutral-700 marker:text-neutral-900">
         {children}
       </ul>
     ),

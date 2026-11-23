@@ -35,12 +35,9 @@ export function LearningOutcomes({ outcomes }: LearningOutcomesProps) {
   return (
     <section
       aria-labelledby="what-youll-learn"
-      className="rounded-lg border border-canvas-line p-6 sm:p-7"
+      className="rounded-none border border-neutral-900 p-6 sm:p-7"
     >
-      <h2
-        id="what-youll-learn"
-        className="font-display text-[24px] leading-8 font-bold text-neutral-900"
-      >
+      <h2 id="what-youll-learn" className="text-heading-1 text-neutral-900">
         What you&rsquo;ll learn
       </h2>
 
@@ -51,15 +48,15 @@ export function LearningOutcomes({ outcomes }: LearningOutcomesProps) {
           return (
             <li
               key={outcome._key}
-              className="flex items-start gap-6 rounded-lg border border-canvas-line p-6 sm:p-7"
+              className="flex items-start gap-6 rounded-none border border-neutral-200 p-6 sm:p-7"
             >
-              <Icon className="size-12 shrink-0 text-primary-400" strokeWidth={1.5} aria-hidden />
+              <Icon className="size-12 shrink-0 text-primary-500" strokeWidth={1.5} aria-hidden />
               <div className="min-w-0">
-                <h3 className="font-display text-[19px] leading-6 font-medium text-neutral-900">
+                <h3 className="text-[19px] leading-6 font-semibold text-neutral-900">
                   {outcome.title}
                 </h3>
                 {outcome.description && (
-                  <p className="mt-3 text-[15px] leading-[28px] text-neutral-500">
+                  <p className="mt-3 text-[15px] leading-7 text-neutral-700">
                     {outcome.description}
                   </p>
                 )}

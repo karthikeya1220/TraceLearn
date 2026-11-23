@@ -19,10 +19,10 @@ export function LogoMark({ size = 28, className }: Omit<LogoProps, "showWordmark
       className={cn("shrink-0", className)}
     >
       {/* Outer downward triangle */}
-      <path d="M2.5 4.5h23L14 25.5 2.5 4.5Z" fill="#F97316" />
+      <path d="M2.5 4.5h23L14 25.5 2.5 4.5Z" fill="#1B45F5" />
       {/* Notched inner V, cut out of the triangle */}
-      <path d="M9.2 4.5h9.6L14 13.2 9.2 4.5Z" fill="#FAFAFC" />
-      <path d="M11.1 10.3h5.8L14 15.6l-2.9-5.3Z" fill="#EA5A0B" />
+      <path d="M9.2 4.5h9.6L14 13.2 9.2 4.5Z" fill="#FAFAF8" />
+      <path d="M11.1 10.3h5.8L14 15.6l-2.9-5.3Z" fill="#1230C8" />
     </svg>
   );
 }
@@ -33,8 +33,12 @@ export function Logo({ size = 28, showWordmark = true, className }: LogoProps) {
       <LogoMark size={size} />
       {showWordmark && (
         <span
-          className="font-sans font-bold tracking-tight text-neutral-900"
-          style={{ fontSize: size * 0.8, lineHeight: 1 }}
+          className="font-sans font-extrabold tracking-tight text-neutral-900"
+          style={{
+            fontSize: size * 0.8,
+            lineHeight: 1,
+            fontStretch: "112%",
+          }}
         >
           Vertex
         </span>

@@ -62,7 +62,7 @@ export function ResultCard({
           start_seconds: result.kind === "video" ? result.startSeconds : null,
         })
       }
-      className="group flex flex-col gap-4 rounded-lg border border-neutral-200 bg-surface p-4 shadow-sm transition-colors hover:border-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 sm:flex-row sm:gap-6"
+      className="group flex flex-col gap-4 rounded-none border border-neutral-900 bg-surface p-4 transition-colors hover:border-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 sm:flex-row sm:gap-6"
     >
       <div className="w-full shrink-0 sm:w-69">{media}</div>
 
@@ -83,7 +83,7 @@ export function ResultCard({
           <span className="flex min-w-0 flex-wrap items-center gap-2 text-body text-neutral-500">
             {meta}
           </span>
-          <span className="inline-flex shrink-0 items-center gap-2 text-body font-medium text-primary-500 transition-colors group-hover:text-primary-600">
+          <span className="inline-flex shrink-0 items-center gap-2 text-body font-semibold tabular-nums text-primary-500 transition-colors group-hover:text-primary-600">
             {action}
           </span>
         </div>

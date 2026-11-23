@@ -26,13 +26,13 @@ export function CourseProgressBar({
   return (
     <div
       className={cn(
-        "sticky bottom-5 z-10 flex flex-col gap-5 rounded-lg border border-canvas-line bg-canvas p-5 shadow-lg sm:flex-row sm:items-center sm:gap-8 sm:px-6",
+        "sticky bottom-5 z-10 flex flex-col gap-5 rounded-none border border-neutral-900 bg-surface p-5 sm:flex-row sm:items-center sm:gap-8 sm:px-6",
         className,
       )}
     >
       <div className="shrink-0">
         <p className="text-[13px] leading-5 text-neutral-500">Your Progress</p>
-        <p className="mt-1 text-[15px] leading-6 text-neutral-500">
+        <p className="mt-1 text-[15px] leading-6 tabular-nums text-neutral-500">
           <span className="font-semibold text-neutral-900">{value}%</span>{" "}
           {value === 0 ? "— not started" : "complete"}
         </p>
@@ -44,9 +44,9 @@ export function CourseProgressBar({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label="Course progress"
-        className="h-2 w-full max-w-80 overflow-hidden rounded-full bg-neutral-200 sm:mr-auto"
+        className="h-2 w-full max-w-80 overflow-hidden rounded-none bg-neutral-100 sm:mr-auto"
       >
-        <div className="h-full rounded-full bg-primary-500" style={{ width: `${value}%` }} />
+        <div className="h-full rounded-none bg-primary-500" style={{ width: `${value}%` }} />
       </div>
 
       {continueHref && (

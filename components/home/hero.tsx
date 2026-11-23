@@ -3,37 +3,49 @@ import Link from "next/link";
 import { SearchForm } from "@/components/search/search-form";
 import { buttonClasses } from "@/components/ui/button";
 
+/**
+ * Poster hero: flush-left type on paper, then one full-bleed cobalt band carrying the
+ * search field — the product's core action, and this page's single color moment.
+ */
 export function Hero() {
   return (
-    <section className="flex flex-col items-center px-6 pt-14 pb-16 text-center sm:px-12 sm:pt-16 sm:pb-20 xl:px-18 xl:pt-20 xl:pb-24">
-      <p className="rounded-sm border border-canvas-line bg-surface px-5 py-3 text-[11px] leading-4 font-semibold tracking-[0.16em] text-primary-500 uppercase">
+    <section className="px-6 pt-14 pb-0 sm:px-12 sm:pt-16 xl:px-18 xl:pt-20">
+      <p className="w-fit bg-neutral-900 px-3 py-1.5 text-[12px] leading-4 font-semibold tracking-[0.08em] text-white uppercase">
         Intelligent learning
       </p>
 
-      <h1 className="mt-10 max-w-[16ch] font-display text-[40px] leading-[1.2] font-bold text-balance text-neutral-900 sm:text-[52px] lg:text-[60px] lg:leading-[74px]">
+      <h1 className="mt-8 max-w-[18ch] text-display-2 text-neutral-900 sm:text-display-1 lg:text-display-0">
         Search your learning in plain English.
       </h1>
 
-      <p className="mt-7 max-w-[46ch] text-[17px] leading-8 text-balance text-neutral-500 sm:text-[18px]">
-        Vertex understands what you want to learn and finds the exact lessons across all your
-        courses.
+      <p className="mt-6 max-w-[52ch] text-body-lg text-neutral-700 sm:text-[19px] sm:leading-7">
+        Find the exact lesson that answers your question — down to the second it is
+        taught.
       </p>
 
       <Link
         href="/courses"
-        className={buttonClasses({ size: "xl", className: "mt-11 w-full max-w-xs sm:w-auto" })}
+        className={buttonClasses({ size: "xl", className: "mt-9 w-full sm:w-auto" })}
       >
         Explore Courses
         <ArrowRight className="size-5" strokeWidth={2} aria-hidden />
       </Link>
 
-      <SearchForm
-        id="home-search"
-        size="lg"
-        label="Ask anything about your learning"
-        placeholder="Ask anything about your learning..."
-        className="mt-11 w-full max-w-225"
-      />
+      <div className="-mx-6 mt-12 bg-primary-500 px-6 pt-7 pb-8 sm:-mx-12 sm:px-12 sm:pt-9 sm:pb-10 xl:-mx-18 xl:px-18">
+        <label
+          htmlFor="home-search"
+          className="block text-[12px] leading-4 font-semibold tracking-[0.08em] text-white/80 uppercase"
+        >
+          Ask anything about your learning
+        </label>
+        <SearchForm
+          id="home-search"
+          size="lg"
+          label="Ask anything about your learning"
+          placeholder="e.g. how do I cache fetched data?"
+          className="mt-4 w-full"
+        />
+      </div>
     </section>
   );
 }

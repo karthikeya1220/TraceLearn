@@ -26,7 +26,7 @@ type MetaProps = Pick<CourseCardProps, "level" | "duration" | "modules"> & {
 function Meta({ level, duration, modules, tight = false }: MetaProps) {
   // Not cn(): tailwind-merge reads the custom `text-small` utility as a colour class and would
   // drop it in favour of `text-neutral-500`.
-  const item = `inline-flex items-center whitespace-nowrap font-sans text-neutral-500 ${
+  const item = `inline-flex items-center whitespace-nowrap font-sans tabular-nums text-neutral-500 ${
     tight ? "gap-1 text-[11px] leading-4" : "text-small gap-2"
   }`;
   const icon = `text-neutral-500 ${tight ? "size-3.5" : "size-4"}`;
@@ -62,7 +62,7 @@ export function CourseCard({
   const fallbackLogo = (size: string) => (
     <span
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-md bg-neutral-900 font-display leading-none font-bold text-white",
+        "flex shrink-0 items-center justify-center rounded-none bg-neutral-900 leading-none font-extrabold text-white [font-stretch:125%]",
         size,
       )}
     >
@@ -75,10 +75,10 @@ export function CourseCard({
       <Card className={cn("gap-7 p-4.5 xl:p-6", className)}>
         {logo ?? fallbackLogo("size-18 rounded-lg text-[32px]")}
         <div className="min-w-0">
-          <h3 className="font-display text-[22px] leading-7 font-bold text-neutral-900">{title}</h3>
+          <h3 className="text-heading-3 text-neutral-900">{title}</h3>
           <p className="mt-4 text-[15px] leading-6.25 text-neutral-500">{description}</p>
         </div>
-        <CardFooter className="flex-wrap gap-x-1 gap-y-2 border-t border-canvas-line pt-6">
+        <CardFooter className="flex-wrap gap-x-1 gap-y-2 border-t border-neutral-200 pt-6">
           <Meta level={level} duration={duration} modules={modules} tight />
         </CardFooter>
       </Card>

@@ -1,101 +1,135 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary */
-  --color-primary-600: #ea5a0b;
-  --color-primary-500: #f97316;
-  --color-primary-400: #fb923c;
-  --color-primary-300: #fdba74;
-  --color-primary-200: #fed7aa;
-  --color-primary-100: #ffeee5;
+  /*
+   * Poster Studio tokens.
+   * One accent (cobalt), true-ink neutrals, paper surfaces.
+   * Radius: zero. Shadows: none. Separation comes from 1px ink rules and
+   * hard-edged color blocks — never from curvature or blur.
+   */
 
-  /* Neutral */
-  --color-neutral-900: #0f172a;
-  --color-neutral-700: #334155;
-  --color-neutral-500: #64748b;
-  --color-neutral-300: #cbd5e1;
-  --color-neutral-200: #e2e8f0;
-  --color-neutral-100: #f1f5f9;
-  --color-neutral-50: #fafafc;
+  /* Cobalt — the one accent. Action and emphasis only, never decoration. */
+  --color-primary-600: #1230c8;
+  --color-primary-500: #1b45f5;
+  --color-primary-400: #4a6ff8;
+  --color-primary-300: #8aa3fb;
+  --color-primary-200: #c7d2fd;
+  --color-primary-100: #e8edfe;
 
-  /* Accents used by badges and status indicators */
-  --color-lesson-bg: #eef0fe;
-  --color-lesson-fg: #4f46e5;
-  --color-success: #16a34a;
+  /* Ink neutrals — true gray, no slate cast. */
+  --color-neutral-900: #121212;
+  --color-neutral-700: #3d3d3d;
+  --color-neutral-500: #6e6e6e;
+  --color-neutral-300: #b8b8b8;
+  --color-neutral-200: #dedede;
+  --color-neutral-100: #efefef;
+  --color-neutral-50: #f5f5f5;
 
-  /* Surfaces */
-  --color-background: #fafafc;
+  /* Surfaces — paper. */
+  --color-background: #fafaf8;
   --color-surface: #ffffff;
+  --color-canvas: #fafaf8;
 
-  /* Warm canvas used by the marketing pages (home) and its hairlines */
-  --color-canvas: #fbf8f5;
-  --color-canvas-line: #f0e7e0;
+  /* Status — functional only: green completed, amber in progress. */
+  --color-lesson-bg: #1b45f5;
+  --color-lesson-fg: #ffffff;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
 
-  /* Typography */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
+  /* Type — one family (Archivo variable). Display utilities add the width axis. */
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 
-  /* Radius */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  /* Radius — zero, deliberately. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.1);
-  --shadow-xl: 0 20px 40px -8px rgba(15, 23, 42, 0.12);
+  /* Shadows — none. */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
 }
 
-/* Type scale — section 03 of the design system */
+/*
+ * Type scale — one ratio (≈1.25 major third, rounded to whole px):
+ * 11/12 · 14 · 17 · 22 · 27 · 34 · 43 · 53 · 66
+ * Weights: 400 (text), 600 (UI/subheads), 800 (display + headings).
+ * Display sizes run the width axis to 112–125% — the poster voice.
+ */
+@utility text-display-0 {
+  font-family: var(--font-display);
+  font-size: 66px;
+  line-height: 68px;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
 @utility text-display-1 {
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 53px;
   line-height: 56px;
-  font-weight: 700;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 @utility text-display-2 {
   font-family: var(--font-display);
-  font-size: 36px;
-  line-height: 44px;
-  font-weight: 700;
+  font-size: 43px;
+  line-height: 48px;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 @utility text-heading-1 {
-  font-family: var(--font-sans);
-  font-size: 28px;
-  line-height: 36px;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 40px;
+  font-weight: 800;
+  font-stretch: 118%;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 @utility text-heading-2 {
-  font-family: var(--font-sans);
-  font-size: 22px;
-  line-height: 30px;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 27px;
+  line-height: 34px;
+  font-weight: 800;
+  font-stretch: 112%;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 @utility text-heading-3 {
   font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 26px;
-  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
 }
 
 @utility text-body-lg {
   font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 17px;
+  line-height: 26px;
   font-weight: 400;
 }
 
 @utility text-body {
   font-family: var(--font-sans);
   font-size: 14px;
-  line-height: 20px;
+  line-height: 21px;
   font-weight: 400;
 }
 
@@ -110,4 +144,21 @@ body {
   background: var(--color-background);
   color: var(--color-neutral-900);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Poster discipline: selection is cobalt, motion is opt-out, edges stay hard. */
+::selection {
+  background: var(--color-primary-500);
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

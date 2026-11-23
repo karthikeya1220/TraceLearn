@@ -1,31 +1,29 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { PostHogUserIdentifier } from "@/components/posthog/posthog-user-identifier";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+/**
+ * One family for the whole site. The width axis (62–125) is what gives Poster Studio
+ * its voice: display utilities run it to 118–125% at weight 800, body text sits at
+ * normal width/400. Weight is included by default by next/font.
+ */
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
+  axes: ["wdth"],
 });
 
 export const metadata: Metadata = {
   title: "Vertex",
   description:
-    "A unified design language for Vertex learning platform. Clean, modern and focused on clarity, consistency and intuitive learning experiences.",
+    "Vertex is a learning platform with search built in. Ask a question in plain English and land on the exact lesson — and the exact second — that answers it.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${archivo.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
           <PostHogUserIdentifier />

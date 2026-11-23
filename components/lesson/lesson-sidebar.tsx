@@ -69,7 +69,7 @@ export function LessonSidebar({
         onClick={() => setIsMobileOpen((open) => !open)}
         aria-expanded={isMobileOpen}
         aria-controls={`${panelId}-rail`}
-        className="flex items-center justify-between gap-3 border-b border-canvas-line px-5 py-4 text-[15px] leading-6 font-medium text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset lg:hidden"
+        className="flex items-center justify-between gap-3 border-b border-neutral-200 px-5 py-4 text-[15px] leading-6 font-semibold text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset lg:hidden"
       >
         Course content
         <ChevronDown
@@ -86,44 +86,46 @@ export function LessonSidebar({
       {courseSlug && (
         <Link
           href={courseHref(courseSlug)}
-          className="inline-flex w-fit items-center gap-3 rounded-xs px-5 pt-8 text-[15px] leading-6 font-medium text-primary-500 transition-colors hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          className="inline-flex w-fit items-center gap-3 rounded-xs px-5 pt-8 text-[15px] leading-6 font-semibold text-primary-500 transition-colors hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
         >
           <ArrowLeft className="size-4" strokeWidth={2} aria-hidden />
           Back to course
         </Link>
       )}
 
-      <div className="flex items-center gap-4 border-b border-canvas-line px-5 py-6">
+      <div className="flex items-center gap-4 border-b border-neutral-200 px-5 py-6">
         {courseImageUrl && (
           <Image
             src={courseImageUrl}
             alt={courseImageAlt}
             width={48}
             height={48}
-            className="size-12 shrink-0 rounded-md object-cover"
+            className="size-12 shrink-0 rounded-none border border-neutral-900 object-cover"
           />
         )}
         <div className="min-w-0 flex-1">
-          <p className="line-clamp-2 text-[15px] leading-5 font-medium text-neutral-900">
+          <p className="line-clamp-2 text-[15px] leading-5 font-semibold text-neutral-900">
             {courseTitle}
           </p>
-          <p className="mt-1.5 text-[13px] leading-4 text-neutral-500">{value}% complete</p>
+          <p className="mt-1.5 text-[13px] leading-4 tabular-nums text-neutral-500">
+            {value}% complete
+          </p>
           <div
             role="progressbar"
             aria-valuenow={value}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-label="Course progress"
-            className="mt-1.5 h-0.75 w-full max-w-38 overflow-hidden rounded-full bg-neutral-200"
+            className="mt-1.5 h-0.75 w-full max-w-38 overflow-hidden rounded-none bg-neutral-200"
           >
-            <div className="h-full rounded-full bg-primary-500" style={{ width: `${value}%` }} />
+            <div className="h-full rounded-none bg-primary-500" style={{ width: `${value}%` }} />
           </div>
         </div>
       </div>
 
       {modules.length > 0 && (
         <>
-          <p className="flex items-center justify-between gap-3 border-b border-canvas-line px-5 py-4 text-[14px] leading-5 text-neutral-900">
+          <p className="flex items-center justify-between gap-3 border-b border-neutral-200 px-5 py-4 text-[14px] leading-5 tabular-nums text-neutral-900">
             Module {(currentModuleNumber ?? 0) + 1} of {modules.length}
             <ChevronDown className="size-4 text-neutral-500" strokeWidth={2} aria-hidden />
           </p>
@@ -139,7 +141,7 @@ export function LessonSidebar({
                 <li
                   key={module._key}
                   className={cn(
-                    "border-b border-canvas-line",
+                    "border-b border-neutral-200",
                     isCurrent && "border-l-2 border-l-primary-500 bg-primary-100/30",
                   )}
                 >
@@ -148,30 +150,30 @@ export function LessonSidebar({
                     onClick={() => toggle(module)}
                     aria-expanded={isOpen}
                     aria-controls={contentId}
-                    className="flex w-full items-start gap-4 px-5 py-4 text-left transition-colors hover:bg-canvas-line/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset"
+                    className="flex w-full items-start gap-4 px-5 py-4 text-left transition-colors hover:bg-primary-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset"
                   >
                     <span className="relative flex shrink-0 justify-center" aria-hidden>
                       <span
                         className={cn(
-                          "flex size-7.25 items-center justify-center rounded-full border text-[13px] leading-none",
+                          "flex size-7.25 items-center justify-center rounded-none border text-[13px] leading-none font-semibold tabular-nums",
                           isCurrent
                             ? "border-primary-500 bg-primary-500 text-white"
-                            : "border-canvas-line bg-canvas text-neutral-700",
+                            : "border-neutral-900 bg-canvas text-neutral-900",
                         )}
                       >
                         {module.index + 1}
                       </span>
                       {!isOpen && (
-                        <span className="absolute top-full left-1/2 h-6 w-px -translate-x-1/2 bg-canvas-line" />
+                        <span className="absolute top-full left-1/2 h-6 w-px -translate-x-1/2 bg-neutral-900" />
                       )}
                     </span>
 
                     <span className="min-w-0 flex-1">
-                      <span className="block text-[14px] leading-5 font-medium text-neutral-900">
+                      <span className="block text-[14px] leading-5 font-semibold text-neutral-900">
                         {module.title}
                       </span>
                       {duration && (
-                        <span className="mt-1 block text-[13px] leading-5 text-neutral-500">
+                        <span className="mt-1 block text-[13px] leading-5 tabular-nums text-neutral-500">
                           {duration}
                         </span>
                       )}
@@ -201,7 +203,7 @@ export function LessonSidebar({
                             <span className="relative flex w-7.25 shrink-0 justify-center" aria-hidden>
                               <span
                                 className={cn(
-                                  "mt-1.5 size-2 rounded-full border",
+                                  "mt-1.5 size-2 rounded-none border",
                                   lesson.isCurrent
                                     ? "border-primary-500 bg-primary-500"
                                     : "border-neutral-300 bg-canvas",
@@ -213,7 +215,7 @@ export function LessonSidebar({
                                 className={cn(
                                   "block text-[14px] leading-5",
                                   lesson.isCurrent
-                                    ? "font-medium text-neutral-900"
+                                    ? "font-semibold text-neutral-900"
                                     : "text-neutral-700",
                                 )}
                               >
@@ -221,7 +223,7 @@ export function LessonSidebar({
                               </span>
                               <span
                                 className={cn(
-                                  "mt-1 block text-[13px] leading-5",
+                                  "mt-1 block text-[13px] leading-5 tabular-nums",
                                   lesson.isCurrent ? "text-primary-500" : "text-neutral-500",
                                 )}
                               >
@@ -230,7 +232,7 @@ export function LessonSidebar({
                             </span>
                             {lesson.isCurrent && (
                               <span
-                                className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary-500 text-white"
+                                className="flex size-7 shrink-0 items-center justify-center rounded-none bg-primary-500 text-white"
                                 aria-hidden
                               >
                                 <Play className="size-3.5 fill-current" strokeWidth={2} />
@@ -244,7 +246,7 @@ export function LessonSidebar({
                             {lesson.slug && !lesson.isCurrent ? (
                               <Link
                                 href={lessonHref(lesson.slug)}
-                                className="flex items-start gap-4 px-5 py-2.5 transition-colors hover:bg-canvas-line/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset"
+                                className="flex items-start gap-4 px-5 py-2.5 transition-colors hover:bg-primary-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset"
                                 onClick={() =>
                                   posthog.capture("lesson_clicked", {
                                     lesson_label: lesson.label,
@@ -284,7 +286,7 @@ export function CompletedMark({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "flex size-5 items-center justify-center rounded-full border border-primary-500 text-primary-500",
+        "flex size-5 items-center justify-center rounded-none border border-success text-success",
         className,
       )}
       aria-label="Completed"

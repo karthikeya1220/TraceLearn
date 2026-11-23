@@ -17,14 +17,14 @@ function initials(name: string) {
     .join("");
 }
 
-/** Circular avatar. Renders initials until a real image source exists. */
+/** Square avatar — poster discipline, no circles. Renders initials until a real image source exists. */
 export function Avatar({ name, size = 48, className }: AvatarProps) {
   return (
     <span
       role="img"
       aria-label={name}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-full border border-canvas-line bg-neutral-100 font-sans font-semibold text-neutral-700",
+        "inline-flex shrink-0 items-center justify-center rounded-none border border-neutral-900 bg-neutral-100 font-sans font-semibold text-neutral-700",
         className,
       )}
       style={{ width: size, height: size, fontSize: size * 0.34, lineHeight: 1 }}

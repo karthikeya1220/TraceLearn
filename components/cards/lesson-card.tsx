@@ -19,10 +19,10 @@ export function LessonCard({ title, description, moduleLabel, href, className }:
       <h3 className="text-heading-3 text-neutral-900">{title}</h3>
       <p className="text-body text-neutral-500">{description}</p>
       <CardFooter>
-        <span className="text-small text-neutral-500">{moduleLabel}</span>
+        <span className="text-small tabular-nums text-neutral-500">{moduleLabel}</span>
         <a
           href={href}
-          className="inline-flex shrink-0 items-center gap-2 rounded-xs text-small font-medium text-primary-500 hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          className="inline-flex shrink-0 items-center gap-2 rounded-xs text-small font-semibold text-primary-500 hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
         >
           View lesson
           <ExternalLink className="size-4" strokeWidth={2} aria-hidden />

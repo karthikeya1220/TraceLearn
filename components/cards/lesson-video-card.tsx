@@ -28,15 +28,16 @@ export function LessonVideoCard({
       <h3 className="text-heading-3 text-neutral-900">{title}</h3>
       <p className="text-body text-neutral-500">{description}</p>
       <CardFooter>
-        <span className="text-small text-neutral-500">
-          {lessonLabel} <span className="px-1">·</span> {timestamp}
+        <span className="text-small tabular-nums text-neutral-500">
+          {lessonLabel} <span className="px-1">·</span>{" "}
+          <span className="font-semibold text-neutral-900">{timestamp}</span>
         </span>
         <a
           href={href}
-          className="inline-flex shrink-0 items-center gap-2 rounded-xs text-small font-medium text-primary-500 hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          className="inline-flex shrink-0 items-center gap-2 rounded-xs text-small font-semibold text-primary-500 hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
         >
           <CirclePlay className="size-4" strokeWidth={2} aria-hidden />
-          Watch from {timestamp}
+          Watch from <span className="tabular-nums">{timestamp}</span>
         </a>
       </CardFooter>
     </Card>

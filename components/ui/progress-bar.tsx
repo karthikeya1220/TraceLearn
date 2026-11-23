@@ -18,16 +18,16 @@ export function ProgressBar({ value, showLabel = true, className }: ProgressBarP
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label="Course progress"
-        className="h-2 w-full overflow-hidden rounded-full bg-neutral-100"
+        className="h-2 w-full overflow-hidden rounded-none bg-neutral-100"
       >
         <div
-          className="h-full rounded-full bg-primary-500 transition-[width]"
+          className="h-full rounded-none bg-primary-500 transition-[width]"
           style={{ width: `${clamped}%` }}
         />
       </div>
       {showLabel && (
         <span className="shrink-0 text-body text-neutral-500">
-          <span className="font-semibold text-neutral-900">{clamped}%</span> complete
+          <span className="font-semibold tabular-nums text-neutral-900">{clamped}%</span> complete
         </span>
       )}
     </div>

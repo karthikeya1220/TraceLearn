@@ -49,13 +49,10 @@ export function CourseContent({ modules, durationSeconds }: CourseContentProps) 
   return (
     <section aria-labelledby="course-content">
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-        <h2
-          id="course-content"
-          className="font-display text-[24px] leading-8 font-bold text-neutral-900"
-        >
+        <h2 id="course-content" className="text-heading-1 text-neutral-900">
           Course Content
         </h2>
-        <p className="text-[13px] leading-5 text-neutral-500">
+        <p className="text-[13px] leading-5 tabular-nums text-neutral-500">
           {pluralize(modules.length, "module")}
           {duration && <span aria-hidden> &nbsp;•&nbsp; </span>}
           {duration}
@@ -63,7 +60,7 @@ export function CourseContent({ modules, durationSeconds }: CourseContentProps) 
       </div>
 
       {/* The toggle straddles the panel's bottom border, so the panel keeps clearance for it. */}
-      <ul className={cn("mt-6 rounded-lg border border-canvas-line", isTruncated && "pb-4")}>
+      <ul className={cn("mt-6 rounded-none border border-neutral-900", isTruncated && "pb-4")}>
         {visible.map((module, moduleIndex) => {
           const key = module._key;
           const isOpen = openKeys.includes(key);
@@ -72,25 +69,25 @@ export function CourseContent({ modules, durationSeconds }: CourseContentProps) 
           const contentId = `${panelId}-${key}`;
 
           return (
-            <li key={key} className="border-b border-canvas-line last:border-b-0">
+            <li key={key} className="border-b border-neutral-200 last:border-b-0">
               <button
                 type="button"
                 onClick={() => toggle(key, module.title ?? null, moduleIndex)}
                 aria-expanded={isOpen}
                 aria-controls={contentId}
-                className="flex w-full items-center gap-5 px-5 py-3.5 text-left transition-colors hover:bg-canvas-line/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset sm:px-7"
+                className="flex w-full items-center gap-5 px-5 py-3.5 text-left transition-colors hover:bg-primary-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset sm:px-7"
               >
                 <span className="relative flex shrink-0 justify-center" aria-hidden>
-                  <span className="flex size-7.25 items-center justify-center rounded-full border border-canvas-line bg-canvas text-[13px] leading-none text-neutral-700">
+                  <span className="flex size-7.25 items-center justify-center rounded-none border border-neutral-900 bg-canvas text-[13px] leading-none font-semibold tabular-nums text-neutral-900">
                     {moduleIndex + 1}
                   </span>
                   {moduleIndex < visible.length - 1 && !isOpen && (
-                    <span className="absolute top-full left-1/2 h-8 w-px -translate-x-1/2 bg-canvas-line" />
+                    <span className="absolute top-full left-1/2 h-8 w-px -translate-x-1/2 bg-neutral-900" />
                   )}
                 </span>
 
                 <span className="min-w-0 flex-1">
-                  <span className="block font-display text-[15px] leading-5 font-medium text-neutral-900">
+                  <span className="block text-[15px] leading-5 font-semibold text-neutral-900">
                     {module.title}
                   </span>
                   {module.summary && (
@@ -101,7 +98,7 @@ export function CourseContent({ modules, durationSeconds }: CourseContentProps) 
                 </span>
 
                 {moduleDuration && (
-                  <span className="shrink-0 text-[13px] leading-5 whitespace-nowrap text-neutral-500">
+                  <span className="shrink-0 text-[13px] leading-5 whitespace-nowrap tabular-nums text-neutral-500">
                     {moduleDuration}
                   </span>
                 )}
@@ -170,7 +167,7 @@ export function CourseContent({ modules, durationSeconds }: CourseContentProps) 
               });
             }}
             aria-expanded={showAll}
-            className="inline-flex items-center gap-3 rounded-md border border-canvas-line bg-canvas px-6 py-2.5 text-[15px] leading-6 text-neutral-900 transition-colors hover:text-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-3 rounded-none border border-neutral-900 bg-surface px-6 py-2.5 text-[15px] leading-6 font-semibold text-neutral-900 transition-colors hover:bg-primary-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
           >
             {showAll ? "Show fewer modules" : `Show all ${modules.length} modules`}
             <ChevronDown
@@ -198,7 +195,7 @@ function LessonRow({ label, title, duration, freePreview }: LessonRowProps) {
   return (
     <>
       <PlayCircle className="size-4 shrink-0 text-neutral-300" strokeWidth={2} aria-hidden />
-      <span className="shrink-0 text-[13px] leading-5 text-neutral-500">{label}</span>
+      <span className="shrink-0 text-[13px] leading-5 tabular-nums text-neutral-500">{label}</span>
       <span className="min-w-0 flex-1 text-[14px] leading-5 text-neutral-700">{title}</span>
       {freePreview && (
         <Badge variant="lesson" className="shrink-0 whitespace-nowrap">
@@ -206,7 +203,7 @@ function LessonRow({ label, title, duration, freePreview }: LessonRowProps) {
         </Badge>
       )}
       {formatted && (
-        <span className="shrink-0 text-[13px] leading-5 whitespace-nowrap text-neutral-500">
+        <span className="shrink-0 text-[13px] leading-5 whitespace-nowrap tabular-nums text-neutral-500">
           {formatted}
         </span>
       )}

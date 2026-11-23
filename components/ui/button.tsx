@@ -5,7 +5,7 @@ export type ButtonVariant = "primary" | "secondary" | "tertiary" | "text";
 export type ButtonSize = "xl" | "lg" | "md";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md font-sans font-medium whitespace-nowrap " +
+  "inline-flex items-center justify-center gap-2 rounded-none font-sans font-semibold whitespace-nowrap " +
   "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 " +
   "focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed";
 
@@ -19,7 +19,7 @@ const sizes: Record<ButtonSize, string> = {
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-primary-500 text-white",
   secondary: "border border-primary-500 bg-transparent text-primary-500",
-  tertiary: "border border-neutral-200 bg-surface text-neutral-900 shadow-sm",
+  tertiary: "border border-neutral-900 bg-surface text-neutral-900",
   text: "px-0 text-primary-500",
 };
 

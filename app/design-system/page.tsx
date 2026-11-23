@@ -35,16 +35,14 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Design System · Vertex",
   description:
-    "Colors, typography, spacing, components and principles that make up the Vertex design language.",
+    "The Poster Studio design language behind Vertex: cobalt and ink on paper, Archivo, hard edges, rules instead of shadows.",
 };
 
 /* ---------------------------------------------------------------- layout */
 
 function Panel({ className, children }: { className?: string; children: ReactNode }) {
   return (
-    <section
-      className={cn("rounded-lg border border-neutral-200 bg-surface p-6 shadow-sm", className)}
-    >
+    <section className={cn("rounded-none border border-neutral-900 bg-surface p-6", className)}>
       {children}
     </section>
   );
@@ -53,8 +51,10 @@ function Panel({ className, children }: { className?: string; children: ReactNod
 function PanelTitle({ number, title }: { number: string; title: string }) {
   return (
     <h2 className="mb-6 flex items-center gap-4">
-      <span className="text-body font-semibold text-primary-500">{number}</span>
-      <span className="text-body font-semibold tracking-[0.12em] text-neutral-900 uppercase">
+      <span className="bg-neutral-900 px-2 py-1 text-[12px] leading-4 font-semibold tabular-nums text-white">
+        {number}
+      </span>
+      <span className="text-body font-semibold tracking-[0.08em] text-neutral-900 uppercase">
         {title}
       </span>
     </h2>
@@ -71,53 +71,45 @@ function Caption({ children }: { children: ReactNode }) {
 
 /* ------------------------------------------------------------------ data */
 
-const primaryColors = [
-  { name: "Primary 500", hex: "#F97316", className: "bg-primary-500" },
-  { name: "Primary 400", hex: "#FB923C", className: "bg-primary-400" },
-  { name: "Primary 300", hex: "#FDBA74", className: "bg-primary-300" },
-  { name: "Primary 200", hex: "#FED7AA", className: "bg-primary-200" },
-  { name: "Primary 100", hex: "#FFEEE5", className: "bg-primary-100" },
+const cobaltColors = [
+  { name: "Cobalt 600", hex: "#1230C8", className: "bg-primary-600" },
+  { name: "Cobalt 500", hex: "#1B45F5", className: "bg-primary-500" },
+  { name: "Cobalt 400", hex: "#4A6FF8", className: "bg-primary-400" },
+  { name: "Cobalt 300", hex: "#8AA3FB", className: "bg-primary-300" },
+  { name: "Cobalt 200", hex: "#C7D2FD", className: "bg-primary-200" },
+  { name: "Cobalt 100", hex: "#E8EDFE", className: "bg-primary-100" },
 ];
 
 const neutralColors = [
-  { name: "Neutral 900", hex: "#0F172A", className: "bg-neutral-900" },
-  { name: "Neutral 700", hex: "#334155", className: "bg-neutral-700" },
-  { name: "Neutral 500", hex: "#64748B", className: "bg-neutral-500" },
-  { name: "Neutral 300", hex: "#CBD5E1", className: "bg-neutral-300" },
-  { name: "Neutral 200", hex: "#E2E8F0", className: "bg-neutral-200" },
-  { name: "Neutral 100", hex: "#F1F5F9", className: "bg-neutral-100" },
-  { name: "Neutral 50", hex: "#FAFAFC", className: "bg-neutral-50 border border-neutral-200" },
+  { name: "Ink 900", hex: "#121212", className: "bg-neutral-900" },
+  { name: "Ink 700", hex: "#3D3D3D", className: "bg-neutral-700" },
+  { name: "Ink 500", hex: "#6E6E6E", className: "bg-neutral-500" },
+  { name: "Ink 300", hex: "#B8B8B8", className: "bg-neutral-300" },
+  { name: "Ink 200", hex: "#DEDEDE", className: "bg-neutral-200" },
+  { name: "Ink 100", hex: "#EFEFEF", className: "bg-neutral-100" },
+  { name: "Ink 50", hex: "#F5F5F5", className: "bg-neutral-50 border border-neutral-200" },
+  { name: "Paper", hex: "#FAFAF8", className: "bg-canvas border border-neutral-200" },
   { name: "White", hex: "#FFFFFF", className: "bg-surface border border-neutral-200" },
 ];
 
+const statusColors = [
+  { name: "Success", hex: "#16A34A", className: "bg-success", use: "Completed" },
+  { name: "Warning", hex: "#D97706", className: "bg-warning", use: "In progress" },
+];
+
 const typeScale = [
-  { style: "Display 1", font: "Playfair Display", size: "48 / 56", weight: "Bold", use: "Page titles" },
-  { style: "Display 2", font: "Playfair Display", size: "36 / 44", weight: "Bold", use: "Section titles" },
-  { style: "Heading 1", font: "Inter", size: "28 / 36", weight: "Semi Bold", use: "Card titles" },
-  { style: "Heading 2", font: "Inter", size: "22 / 30", weight: "Semi Bold", use: "Sub section" },
-  { style: "Heading 3", font: "Inter", size: "18 / 26", weight: "Medium", use: "Small titles" },
-  { style: "Body Large", font: "Inter", size: "16 / 24", weight: "Regular", use: "Body copy" },
-  { style: "Body", font: "Inter", size: "14 / 20", weight: "Regular", use: "Supporting text" },
-  { style: "Small", font: "Inter", size: "12 / 16", weight: "Regular", use: "Captions, meta" },
+  { style: "Display 0", font: "Archivo", size: "66 / 68", weight: "800 · wdth 125", use: "Hero" },
+  { style: "Display 1", font: "Archivo", size: "53 / 56", weight: "800 · wdth 125", use: "Page titles" },
+  { style: "Display 2", font: "Archivo", size: "43 / 48", weight: "800 · wdth 125", use: "Section titles" },
+  { style: "Heading 1", font: "Archivo", size: "34 / 40", weight: "800 · wdth 118", use: "Page headings" },
+  { style: "Heading 2", font: "Archivo", size: "27 / 34", weight: "800 · wdth 112", use: "Sub sections" },
+  { style: "Heading 3", font: "Archivo", size: "22 / 30", weight: "600", use: "Card titles" },
+  { style: "Body Large", font: "Archivo", size: "17 / 26", weight: "400", use: "Lead copy" },
+  { style: "Body", font: "Archivo", size: "14 / 21", weight: "400", use: "Supporting text" },
+  { style: "Small", font: "Archivo", size: "12 / 16", weight: "400", use: "Captions, meta" },
 ];
 
 const spacingScale = [4, 8, 12, 16, 24, 32, 40, 48, 64];
-
-const radii = [
-  { label: "4px", name: "(xs)", className: "rounded-xs" },
-  { label: "8px", name: "(sm)", className: "rounded-sm" },
-  { label: "12px", name: "(md)", className: "rounded-md" },
-  { label: "16px", name: "(lg)", className: "rounded-lg" },
-  { label: "24px", name: "(xl)", className: "rounded-xl" },
-  { label: "Full", name: "(circle)", className: "rounded-full" },
-];
-
-const shadows = [
-  { name: "Sm", value: "0 1px 2px 0 rgba(15, 23, 42, 0.05)", className: "shadow-sm" },
-  { name: "Md", value: "0 4px 12px -2px rgba(15, 23, 42, 0.08)", className: "shadow-md" },
-  { name: "Lg", value: "0 12px 24px -4px rgba(15, 23, 42, 0.10)", className: "shadow-lg" },
-  { name: "Xl", value: "0 20px 40px -8px rgba(15, 23, 42, 0.12)", className: "shadow-xl" },
-];
 
 const icons = [
   { Icon: Bell, fillable: true },
@@ -138,7 +130,7 @@ const principles = [
     title: "Consistency",
     copy: "Use components and patterns consistently across the platform.",
   },
-  { Icon: Target, title: "Focus & Calm", copy: "Remove noise and help learners focus on what matters." },
+  { Icon: Target, title: "Hard Edges", copy: "Zero radius, zero shadow. Rules and blocks carry structure." },
   {
     Icon: Accessibility,
     title: "Accessible",
@@ -161,37 +153,51 @@ export default function DesignSystemPage() {
         {/* Intro */}
         <Panel className="lg:col-span-4">
           <Logo size={32} />
-          <h1 className="mt-8 text-display-1 text-neutral-900 lg:whitespace-nowrap">Design System</h1>
-          <p className="mt-4 max-w-sm text-body-lg text-neutral-500">
-            A unified design language for Vertex learning platform. Clean, modern and focused on
-            clarity, consistency and intuitive learning experiences.
+          <h1 className="mt-8 text-display-1 text-neutral-900">Design System</h1>
+          <p className="mt-4 max-w-sm text-body-lg text-neutral-700">
+            Poster Studio: paper and ink, one cobalt accent, oversized Archivo, and hard-edged
+            color blocks. Separation comes from 1px rules — never from curvature or blur.
           </p>
-          <p className="mt-8 text-small tracking-[0.12em] text-neutral-500 uppercase">
-            Version 1.0 &nbsp;•&nbsp; May 2025
+          <p className="mt-8 text-small tracking-[0.08em] text-neutral-500 uppercase">
+            Version 2.0 &nbsp;•&nbsp; Poster Studio
           </p>
         </Panel>
 
         {/* 01 Colors */}
         <Panel className="lg:col-span-8">
           <PanelTitle number="01" title="Colors" />
-          <GroupLabel>Primary</GroupLabel>
-          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {primaryColors.map((color) => (
+          <GroupLabel>Cobalt — the one accent</GroupLabel>
+          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {cobaltColors.map((color) => (
               <li key={color.name}>
-                <div className={cn("h-16 rounded-sm", color.className)} />
+                <div className={cn("h-16 rounded-none", color.className)} />
                 <p className="mt-2 text-body text-neutral-900">{color.name}</p>
-                <p className="text-body text-neutral-500">{color.hex}</p>
+                <p className="text-body tabular-nums text-neutral-500">{color.hex}</p>
               </li>
             ))}
           </ul>
           <div className="mt-8">
-            <GroupLabel>Neutral</GroupLabel>
-            <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
+            <GroupLabel>Ink neutrals — true gray</GroupLabel>
+            <ul className="grid grid-cols-3 gap-4 sm:grid-cols-5 lg:grid-cols-9">
               {neutralColors.map((color) => (
                 <li key={color.name}>
-                  <div className={cn("h-16 rounded-sm", color.className)} />
+                  <div className={cn("h-16 rounded-none", color.className)} />
                   <p className="mt-2 text-body text-neutral-900">{color.name}</p>
-                  <p className="text-body text-neutral-500">{color.hex}</p>
+                  <p className="text-body tabular-nums text-neutral-500">{color.hex}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-8">
+            <GroupLabel>Status — functional only</GroupLabel>
+            <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {statusColors.map((color) => (
+                <li key={color.name}>
+                  <div className={cn("h-16 rounded-none", color.className)} />
+                  <p className="mt-2 text-body text-neutral-900">
+                    {color.name} <span className="text-neutral-500">· {color.use}</span>
+                  </p>
+                  <p className="text-body tabular-nums text-neutral-500">{color.hex}</p>
                 </li>
               ))}
             </ul>
@@ -202,22 +208,33 @@ export default function DesignSystemPage() {
         <Panel className="lg:col-span-5">
           <PanelTitle number="02" title="Typography" />
           <div className="flex items-center gap-8">
-            <span className="font-display text-[64px] leading-none font-bold text-neutral-900">
+            <span className="text-[64px] leading-none font-extrabold text-neutral-900 [font-stretch:125%]">
               Ag
             </span>
             <div>
-              <p className="text-heading-2 text-neutral-900">Playfair Display</p>
-              <p className="mt-1 text-body text-neutral-500">Elegant • Readable • Timeless</p>
+              <p className="text-heading-2 text-neutral-900">Archivo</p>
+              <p className="mt-1 text-body text-neutral-700">
+                Variable width 62–125 · one family for the whole site
+              </p>
             </div>
           </div>
-          <div className="mt-8 flex items-center gap-8">
-            <span className="font-sans text-[64px] leading-none font-semibold text-neutral-900">
-              Ag
-            </span>
-            <div>
-              <p className="text-heading-2 text-neutral-900">Inter</p>
-              <p className="mt-1 text-body text-neutral-500">Clean • Modern • Highly legible</p>
-            </div>
+          <div className="mt-8 grid grid-cols-3 gap-4 border border-neutral-200 p-4">
+            {[
+              { stretch: "62%", weight: "400", label: "Condensed" },
+              { stretch: "100%", weight: "600", label: "Normal" },
+              { stretch: "125%", weight: "800", label: "Expanded" },
+            ].map((spec) => (
+              <div key={spec.label} className="text-center">
+                <p
+                  className="text-[28px] leading-8 text-neutral-900"
+                  style={{ fontStretch: spec.stretch, fontWeight: spec.weight }}
+                >
+                  Aa
+                </p>
+                <p className="mt-2 text-small text-neutral-500">{spec.label}</p>
+                <p className="text-small tabular-nums text-neutral-500">{spec.weight}</p>
+              </div>
+            ))}
           </div>
         </Panel>
 
@@ -227,7 +244,7 @@ export default function DesignSystemPage() {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[520px] border-collapse text-left">
               <thead>
-                <tr className="border-b border-neutral-200">
+                <tr className="border-b border-neutral-900">
                   {["Style", "Font", "Size / Line Height", "Weight", "Use"].map((heading) => (
                     <th key={heading} className="pb-3 text-body font-normal text-neutral-500">
                       {heading}
@@ -237,11 +254,11 @@ export default function DesignSystemPage() {
               </thead>
               <tbody>
                 {typeScale.map((row) => (
-                  <tr key={row.style}>
+                  <tr key={row.style} className="border-b border-neutral-200 last:border-b-0">
                     <td className="py-2 text-body font-semibold text-neutral-900">{row.style}</td>
                     <td className="py-2 text-body text-neutral-500">{row.font}</td>
-                    <td className="py-2 text-body text-neutral-500">{row.size}</td>
-                    <td className="py-2 text-body text-neutral-500">{row.weight}</td>
+                    <td className="py-2 text-body tabular-nums text-neutral-500">{row.size}</td>
+                    <td className="py-2 text-body tabular-nums text-neutral-500">{row.weight}</td>
                     <td className="py-2 text-body text-neutral-500">{row.use}</td>
                   </tr>
                 ))}
@@ -258,11 +275,11 @@ export default function DesignSystemPage() {
             {spacingScale.map((step) => (
               <li key={step} className="flex shrink-0 flex-col items-center gap-3">
                 <span
-                  className="block rounded-xs bg-primary-200"
+                  className="block rounded-none bg-primary-500"
                   style={{ width: step, height: step }}
                 />
-                <span className="text-body text-neutral-900">{step}</span>
-                <span className="text-small text-neutral-500">({step / 16}rem)</span>
+                <span className="text-body tabular-nums text-neutral-900">{step}</span>
+                <span className="text-small tabular-nums text-neutral-500">({step / 16}rem)</span>
               </li>
             ))}
           </ul>
@@ -271,28 +288,23 @@ export default function DesignSystemPage() {
         {/* 05 Radius and shadows */}
         <Panel className="lg:col-span-5">
           <PanelTitle number="05" title="Radius & Shadows" />
-          <GroupLabel>Radius</GroupLabel>
-          <ul className="flex flex-wrap gap-4">
-            {radii.map((radius) => (
-              <li key={radius.label} className="flex flex-col items-center gap-2">
-                <span
-                  className={cn("block size-12 border border-neutral-200 bg-surface", radius.className)}
-                />
-                <span className="text-body text-neutral-900">{radius.label}</span>
-                <span className="text-small text-neutral-500">{radius.name}</span>
-              </li>
-            ))}
-          </ul>
+          <GroupLabel>Radius — 0, deliberately</GroupLabel>
+          <div className="flex items-center gap-5">
+            <span className="block size-16 border border-neutral-900 bg-surface" />
+            <div>
+              <p className="text-heading-3 tabular-nums text-neutral-900">0px</p>
+              <p className="mt-1 text-body text-neutral-500">
+                Every surface is a rectangle. Structure comes from 1px ink rules.
+              </p>
+            </div>
+          </div>
           <div className="mt-8">
-            <GroupLabel>Shadows</GroupLabel>
+            <GroupLabel>Shadows — none</GroupLabel>
             <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {shadows.map((shadow) => (
-                <li
-                  key={shadow.name}
-                  className={cn("rounded-md bg-surface p-4", shadow.className)}
-                >
-                  <p className="text-heading-3 text-neutral-900">{shadow.name}</p>
-                  <p className="mt-2 text-[11px] leading-4 text-neutral-500">{shadow.value}</p>
+              {["Sm", "Md", "Lg", "Xl"].map((name) => (
+                <li key={name} className="rounded-none border border-neutral-900 bg-surface p-4">
+                  <p className="text-heading-3 text-neutral-900">{name}</p>
+                  <p className="mt-2 text-[11px] leading-4 text-neutral-500">none</p>
                 </li>
               ))}
             </ul>
@@ -328,7 +340,7 @@ export default function DesignSystemPage() {
           </div>
           <div className="mt-8">
             <GroupLabel>Icon Specs</GroupLabel>
-            <ul className="list-disc space-y-1 pl-5 text-body text-neutral-500">
+            <ul className="list-disc space-y-1 pl-5 text-body text-neutral-500 marker:text-neutral-900">
               <li>24x24px grid</li>
               <li>2px stroke width (outline)</li>
               <li>Rounded line caps</li>
@@ -386,11 +398,11 @@ export default function DesignSystemPage() {
           </div>
           <div className="mt-8">
             <GroupLabel>Button Specs</GroupLabel>
-            <ul className="list-disc space-y-1 pl-5 text-body text-neutral-500">
+            <ul className="list-disc space-y-1 pl-5 text-body text-neutral-500 marker:text-neutral-900">
               <li>Height: 44px (default)</li>
               <li>Padding: 0 16px (lg), 0 12px (md)</li>
-              <li>Radius: 12px</li>
-              <li>Font: Inter Medium (14–16px)</li>
+              <li>Radius: 0</li>
+              <li>Font: Archivo Semibold (14–16px)</li>
             </ul>
           </div>
         </Panel>
@@ -415,12 +427,12 @@ export default function DesignSystemPage() {
           </div>
           <div className="mt-8">
             <GroupLabel>Field Specs</GroupLabel>
-            <ul className="list-disc space-y-1 pl-5 text-body text-neutral-500">
+            <ul className="list-disc space-y-1 pl-5 text-body text-neutral-500 marker:text-neutral-900">
               <li>Height: 44px</li>
-              <li>Radius: 12px</li>
-              <li>Border: 1px solid #E2E8F0</li>
+              <li>Radius: 0</li>
+              <li>Border: 1px solid #121212</li>
               <li>Padding: 0 16px</li>
-              <li>Focus: Border color #FB923C</li>
+              <li>Focus: border #1B45F5</li>
             </ul>
           </div>
         </Panel>
@@ -428,7 +440,7 @@ export default function DesignSystemPage() {
         {/* 09 Badges */}
         <Panel className="lg:col-span-4">
           <PanelTitle number="09" title="Badges / Tags" />
-          <div className="flex flex-wrap gap-10">
+          <div className="flex flex-wrap items-start gap-10">
             <div>
               <Caption>Video</Caption>
               <Badge variant="video">Video</Badge>
@@ -442,6 +454,9 @@ export default function DesignSystemPage() {
               <Badge variant="popular">Popular</Badge>
             </div>
           </div>
+          <p className="mt-5 text-body text-neutral-500">
+            Solid rectangles with tracked uppercase labels. No pills.
+          </p>
         </Panel>
 
         {/* 10 Status */}
@@ -474,7 +489,7 @@ export default function DesignSystemPage() {
                 duration="18h 24m"
                 modules="12 modules"
                 logo={
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-md bg-neutral-900 font-display text-[22px] leading-none font-bold text-white">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-none bg-neutral-900 text-[22px] leading-none font-extrabold text-white [font-stretch:112%]">
                     N
                   </span>
                 }
@@ -540,10 +555,10 @@ export default function DesignSystemPage() {
           <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
             {principles.map(({ Icon, title, copy }) => (
               <li key={title} className="flex items-start gap-4">
-                <Icon className="size-8 shrink-0 text-neutral-700" strokeWidth={2} aria-hidden />
+                <Icon className="size-8 shrink-0 text-primary-500" strokeWidth={2} aria-hidden />
                 <div>
                   <p className="text-heading-3 text-neutral-900">{title}</p>
-                  <p className="mt-1 text-body text-neutral-500">{copy}</p>
+                  <p className="mt-1 text-body text-neutral-700">{copy}</p>
                 </div>
               </li>
             ))}

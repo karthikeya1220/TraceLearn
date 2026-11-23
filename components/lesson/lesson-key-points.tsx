@@ -26,10 +26,10 @@ export function LessonKeyPoints({ points }: LessonKeyPointsProps) {
 /** The tinted pro tip panel. */
 export function LessonProTip({ tip }: { tip: string }) {
   return (
-    <aside className="flex gap-4 rounded-md bg-primary-100 p-6">
+    <aside className="flex gap-4 rounded-none bg-primary-100 p-6">
       <Lightbulb className="mt-0.5 size-5 shrink-0 text-primary-500" strokeWidth={2} aria-hidden />
       <div className="min-w-0">
-        <h2 className="font-display text-[16px] leading-6 font-bold text-neutral-900">Pro Tip</h2>
+        <h2 className="text-[16px] leading-6 font-semibold text-neutral-900">Pro Tip</h2>
         <p className="mt-1.5 text-[15px] leading-[26px] text-neutral-700">{tip}</p>
       </div>
     </aside>

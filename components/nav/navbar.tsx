@@ -40,10 +40,10 @@ export function Navbar({ links = defaultLinks, activeHref, className }: NavbarPr
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "rounded-xs text-body-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
+                  "rounded-xs pb-1 text-body-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2",
                   isActive
-                    ? "text-primary-500"
-                    : "text-neutral-900 hover:text-primary-500",
+                    ? "border-b-2 border-primary-500 text-primary-500"
+                    : "border-b-2 border-transparent text-neutral-900 hover:text-primary-500",
                 )}
               >
                 {link.label}

@@ -35,7 +35,7 @@ export function LessonResultCard({
         // 16:9 of the 276px column is the floor, not the ceiling: the panel matches a video
         // thumbnail's height when the key points are short and grows rather than clipping them
         // when they are not.
-        <div className="relative flex w-full flex-col gap-3 rounded-md border border-neutral-100 bg-neutral-50 p-4 sm:min-h-39">
+        <div className="relative flex w-full flex-col gap-3 rounded-none border border-neutral-200 bg-neutral-50 p-4 sm:min-h-39">
           <FileText className="size-6 shrink-0 text-neutral-500" strokeWidth={1.75} aria-hidden />
 
           {keyPoints.length > 0 && (
@@ -45,7 +45,7 @@ export function LessonResultCard({
                   key={point}
                   className="flex min-w-0 items-start gap-2 text-small leading-4.5 text-neutral-700"
                 >
-                  <span className="mt-2 size-1 shrink-0 rounded-full bg-neutral-500" aria-hidden />
+                  <span className="mt-2 size-1 shrink-0 rounded-none bg-neutral-900" aria-hidden />
                   <span className="line-clamp-2">{point}</span>
                 </li>
               ))}

@@ -36,21 +36,19 @@ export function CourseHero({ course, continueHref }: CourseHeroProps) {
           width={280}
           height={328}
           priority
-          className="h-[328px] w-full max-w-[280px] shrink-0 rounded-lg object-cover"
+          className="h-[328px] w-full max-w-[280px] shrink-0 rounded-none border border-neutral-900 object-cover"
         />
       )}
 
       <div className="min-w-0 flex-1">
         {course.popular && <Badge variant="popular">Popular</Badge>}
 
-        <h1 className="mt-8 font-display text-[38px] leading-[46px] font-bold text-neutral-900 sm:text-[52px] sm:leading-[60px]">
+        <h1 className="mt-8 text-heading-1 text-neutral-900 sm:text-display-2 lg:text-display-1">
           {course.title}
         </h1>
 
         {course.summary && (
-          <p className="mt-6 max-w-[420px] text-[17px] leading-[31px] text-neutral-500">
-            {course.summary}
-          </p>
+          <p className="mt-6 max-w-[46ch] text-body-lg text-neutral-700">{course.summary}</p>
         )}
 
         {meta.length > 0 && (
@@ -58,7 +56,7 @@ export function CourseHero({ course, continueHref }: CourseHeroProps) {
             {meta.map(({ icon: Icon, label }) => (
               <li
                 key={label}
-                className="inline-flex items-center gap-2 text-[14px] leading-5 whitespace-nowrap text-neutral-500"
+                className="inline-flex items-center gap-2 text-[14px] leading-5 whitespace-nowrap tabular-nums text-neutral-700"
               >
                 <Icon className="size-4 shrink-0" strokeWidth={2} aria-hidden />
                 {label}

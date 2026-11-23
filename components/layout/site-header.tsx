@@ -14,7 +14,7 @@ export function SiteHeader({ activeHref, className }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "flex min-h-24 flex-wrap items-center justify-between gap-4 border-b border-canvas-line px-6 py-4 sm:px-10 xl:px-15",
+        "flex min-h-24 flex-wrap items-center justify-between gap-4 border-b border-neutral-900 px-6 py-4 sm:px-10 xl:px-15",
         className,
       )}
     >
@@ -28,7 +28,9 @@ export function SiteHeader({ activeHref, className }: SiteHeaderProps) {
           >
             <Bell className="size-6" strokeWidth={2} aria-hidden />
           </button>
-          <UserButton appearance={{ elements: { avatarBox: "size-10" } }} />
+          <UserButton
+            appearance={{ elements: { avatarBox: "size-10 rounded-none", avatarImage: "rounded-none" } }}
+          />
         </Show>
         <Show when="signed-out">
           <SignInButton mode="modal">

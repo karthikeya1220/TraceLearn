@@ -31,7 +31,7 @@ export function ResourceCard({
         </div>
       </div>
       <CardFooter>
-        <span className="text-small text-neutral-500">
+        <span className="text-small tabular-nums text-neutral-500">
           {type} <span className="px-1">·</span> {size}
         </span>
         <a
