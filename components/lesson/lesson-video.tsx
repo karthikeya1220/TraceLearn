@@ -24,6 +24,8 @@ interface LessonVideoProps {
   startSeconds: number;
   /** The lesson's stored runtime, which watch depth is measured against. */
   durationSeconds: number | null;
+  /** Whether the video was opened via a deep link or timestamp click and should autoplay. */
+  autoPlay?: boolean;
 }
 
 /**
@@ -41,9 +43,11 @@ export function LessonVideo({
   posterAlt,
   startSeconds,
   durationSeconds,
+  autoPlay = false,
 }: LessonVideoProps) {
-  const deepLinked = Boolean(video) && startSeconds > 0;
-  const [isPlaying, setIsPlaying] = useState(deepLinked);
+  const isDeepLinked = Boolean(video) && (autoPlay || startSeconds > 0);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
+  const isPlaying = isDeepLinked || hasStartedPlaying;
 
   const capturePlay = (source: VideoPlaySource) => {
     posthog.capture(ANALYTICS_EVENTS.videoPlayed, {
@@ -59,10 +63,10 @@ export function LessonVideo({
   // A deep-linked video starts without anyone pressing anything, so there is no handler to hang the
   // capture on — the mount is the play.
   useEffect(() => {
-    if (!deepLinked) return;
+    if (!isDeepLinked) return;
     capturePlay("deep_link");
     // eslint-disable-next-line react-hooks/exhaustive-deps -- fires once per deep-linked lesson.
-  }, [deepLinked, lessonSlug]);
+  }, [isDeepLinked, lessonSlug, startSeconds]);
 
   useWatchDepth({
     isPlaying,
@@ -75,7 +79,7 @@ export function LessonVideo({
   });
 
   const play = () => {
-    setIsPlaying(true);
+    setHasStartedPlaying(true);
     capturePlay("poster_click");
   };
 
@@ -83,6 +87,7 @@ export function LessonVideo({
     <div className="relative aspect-video w-full overflow-hidden rounded-none border border-neutral-900 bg-neutral-900">
       {isPlaying && video ? (
         <iframe
+          key={`${video.provider}-${video.id}-${startSeconds}`}
           src={videoEmbedUrl(video, { startSeconds, autoplay: true })}
           title={`${lessonTitle} — ${videoProviderLabel(video.provider)} video`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"

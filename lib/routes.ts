@@ -19,7 +19,9 @@ export function instructorHref(slug: string) {
  * provider's own start parameter so playback opens at that second (AGENTS.md §7).
  */
 export function lessonHref(slug: string, startSeconds?: number | null) {
-  if (!startSeconds || startSeconds <= 0) return `/lessons/${slug}`;
+  if (startSeconds === null || startSeconds === undefined || startSeconds < 0) {
+    return `/lessons/${slug}`;
+  }
   return `/lessons/${slug}?t=${Math.floor(startSeconds)}`;
 }
 

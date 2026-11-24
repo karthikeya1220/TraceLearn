@@ -72,6 +72,15 @@ export function VideoResultCard({
               </span>
             </>
           )}
+          {result.momentLabel && (
+            <>
+              <span aria-hidden>·</span>
+              <span className="inline-flex min-w-0 items-center gap-1.5 text-neutral-700">
+                <CirclePlay className="size-3.5 shrink-0 text-primary-500" strokeWidth={2} aria-hidden />
+                <span className="truncate font-medium">{result.momentLabel}</span>
+              </span>
+            </>
+          )}
         </>
       }
       action={

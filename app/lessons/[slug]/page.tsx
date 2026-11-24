@@ -53,12 +53,18 @@ export async function generateMetadata({
 }
 
 /** `?t=765` — the matched second a search result deep-links to (AGENTS.md §7). */
-function readStartSeconds(value: string | string[] | undefined, durationSeconds: number | null) {
+function parseStartParam(value: string | string[] | undefined, durationSeconds: number | null) {
+  if (value === undefined || value === null) {
+    return { startSeconds: 0, hasStartParam: false };
+  }
   const raw = Array.isArray(value) ? value[0] : value;
   const parsed = Number.parseInt(raw ?? "", 10);
 
-  if (!Number.isFinite(parsed) || parsed <= 0) return 0;
-  return durationSeconds ? Math.min(parsed, durationSeconds) : parsed;
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    return { startSeconds: 0, hasStartParam: true };
+  }
+  const start = durationSeconds ? Math.min(parsed, durationSeconds) : parsed;
+  return { startSeconds: start, hasStartParam: true };
 }
 
 export default async function LessonPage({ params, searchParams }: PageProps<"/lessons/[slug]">) {
@@ -72,7 +78,7 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
   // The lesson schema has no summary field, so the notes' lead paragraph fills that role — and is
   // dropped from the body below so the page does not print it twice.
   const { lead: summary, rest: body } = splitLeadParagraph(lesson.notes);
-  const startSeconds = readStartSeconds(
+  const { startSeconds, hasStartParam } = parseStartParam(
     (await searchParams)[START_SECONDS_PARAM],
     lesson.duration,
   );
@@ -154,6 +160,7 @@ export default async function LessonPage({ params, searchParams }: PageProps<"/l
               }
               posterAlt={lesson.thumbnail?.alt ?? lesson.title ?? ""}
               startSeconds={startSeconds}
+              autoPlay={hasStartParam}
               durationSeconds={lesson.duration}
             />
 

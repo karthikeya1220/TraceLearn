@@ -138,6 +138,10 @@ export const LESSONS_BY_IDS_QUERY = defineQuery(`
     freePreview,
     keyPoints,
     "thumbnailRef": thumbnail.asset._ref,
+    "videoDetail": *[_type == "video" && url == ^.videoUrl][0]{
+      chapters[]{startSeconds, label},
+      chunks[]{startSeconds, text}
+    },
     "course": *[_type == "course" && references(^._id)][0]{
       title,
       "slug": slug.current,

@@ -54,7 +54,26 @@ terms that hit:
 \`\`\`
 
 That filter reads: keep the lesson when at least one of the listed patterns matches its title, its
-notes, or one of its key points. It is the shape to reach for on almost every search.
+notes, or one of its key points.
+
+For video moments, execute this two-stage lookup:
+
+\`\`\`groq
+*[_type == "video" && (
+  count(["cach*", "fetch*", "revalidat*"][^.chapters[].label match @]) > 0 ||
+  count(["cach*", "fetch*", "revalidat*"][^.chunks[].text match @]) > 0
+)]{
+  url,
+  "lesson": *[_type == "lesson" && videoUrl == ^.url][0]{ _id, title },
+  "matchedChapters": chapters[count(["cach*", "fetch*", "revalidat*"][^.label match @]) > 0][0..2]{ startSeconds, label },
+  "matchedChunks": chunks[count(["cach*", "fetch*", "revalidat*"][^.text match @]) > 0][0..2]{ startSeconds, text }
+}
+\`\`\`
+
+Two-stage timestamp resolution rule for each video hit:
+1. **Stage 1 (Chapters first)**: If \`matchedChapters\` has matches, pick \`matchedChapters[0]\`. Set \`startSeconds = matchedChapters[0].startSeconds\` and \`momentLabel = matchedChapters[0].label\`.
+2. **Stage 2 (Transcript fallback)**: Only when \`matchedChapters\` is empty, fall back to \`matchedChunks[0]\`. Set \`startSeconds = matchedChunks[0].startSeconds\` and \`momentLabel = null\`.
+3. Set \`kind = "video"\` and assign \`lessonId = lesson._id\`. If a lesson video has no matching chapter or chunk, return it as a lesson hit with \`kind = "lesson"\` and \`startSeconds = null\`.
 
 Query rules:
 

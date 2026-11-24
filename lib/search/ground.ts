@@ -67,12 +67,49 @@ export async function groundHits(hits: ModelHit[], sort: SearchSort): Promise<Se
       rank: hit.rank,
     };
 
-    // A video hit without a real start second is just a lesson hit — the model was told never to
-    // estimate one, and a moment with no timestamp has nothing to link to.
-    const startSeconds =
-      hit.kind === "video" && hit.startSeconds !== null && hit.startSeconds >= 0
-        ? hit.startSeconds
-        : null;
+    const videoDetail = (
+      lesson as {
+        videoDetail?: {
+          chapters?: { startSeconds: number | null; label: string | null }[] | null;
+          chunks?: { startSeconds: number | null; text: string | null }[] | null;
+        } | null;
+      }
+    ).videoDetail;
+
+    let startSeconds: number | null = null;
+    let momentLabel: string | null = null;
+
+    if (hit.kind === "video" && hit.startSeconds !== null && hit.startSeconds >= 0) {
+      const chapters = videoDetail?.chapters ?? [];
+      const chunks = videoDetail?.chunks ?? [];
+
+      // Two-stage timestamp validation: Stage 1 = Chapter, Stage 2 = Transcript chunk
+      const matchingChapter = chapters.find(
+        (c) => c.startSeconds !== null && Math.abs(c.startSeconds - hit.startSeconds!) <= 1,
+      );
+
+      if (matchingChapter && matchingChapter.startSeconds !== null) {
+        startSeconds = matchingChapter.startSeconds;
+        momentLabel = matchingChapter.label ?? hit.momentLabel ?? null;
+      } else {
+        const matchingChunk = chunks.find(
+          (c) => c.startSeconds !== null && Math.abs(c.startSeconds - hit.startSeconds!) <= 3,
+        );
+        if (matchingChunk && matchingChunk.startSeconds !== null) {
+          startSeconds = matchingChunk.startSeconds;
+          momentLabel = null;
+        } else if (chapters.length === 0 && chunks.length === 0) {
+          // No video detail ingested yet for this lesson, preserve verified timestamp if within duration
+          if (!lesson.duration || hit.startSeconds <= lesson.duration) {
+            startSeconds = hit.startSeconds;
+            momentLabel = hit.momentLabel ?? null;
+          }
+        } else if (lesson.duration && hit.startSeconds <= lesson.duration) {
+          startSeconds = hit.startSeconds;
+          momentLabel = hit.momentLabel ?? null;
+        }
+      }
+    }
 
     results.push(
       startSeconds === null
@@ -81,7 +118,7 @@ export async function groundHits(hits: ModelHit[], sort: SearchSort): Promise<Se
             ...base,
             kind: "video",
             startSeconds,
-            momentLabel: hit.momentLabel ?? null,
+            momentLabel,
             href: lessonHref(lesson.slug, startSeconds),
           },
     );

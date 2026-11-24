@@ -72,7 +72,7 @@ export function videoEmbedUrl(
 
   if (provider === "youtube") {
     const params = new URLSearchParams({ rel: "0", modestbranding: "1", playsinline: "1" });
-    if (start) params.set("start", `${start}`);
+    if (start > 0 || autoplay) params.set("start", `${start}`);
     if (autoplay) params.set("autoplay", "1");
     return `https://www.youtube-nocookie.com/embed/${id}?${params}`;
   }
@@ -81,11 +81,11 @@ export function videoEmbedUrl(
     const params = new URLSearchParams({ dnt: "1" });
     if (autoplay) params.set("autoplay", "1");
     // Vimeo takes the start offset as a media fragment, not a query parameter.
-    return `https://player.vimeo.com/video/${id}?${params}${start ? `#t=${start}s` : ""}`;
+    return `https://player.vimeo.com/video/${id}?${params}${start > 0 || autoplay ? `#t=${start}s` : ""}`;
   }
 
   const params = new URLSearchParams({ preload: "false", responsive: "true" });
-  if (start) params.set("t", `${start}`);
+  if (start > 0 || autoplay) params.set("t", `${start}`);
   if (autoplay) params.set("autoplay", "true");
   return `https://iframe.mediadelivery.net/embed/${id}?${params}`;
 }
