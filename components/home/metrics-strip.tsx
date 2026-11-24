@@ -4,14 +4,14 @@ export function MetricsStrip() {
   const metrics = [
     {
       value: "100%",
-      label: "Grounded Truth",
-      description: "Zero AI hallucinations. Sourced strictly from verified lesson transcripts.",
+      label: "Grounded Accuracy",
+      description: "Zero AI hallucinations. Sourced strictly from verified video transcripts.",
       icon: CheckCircle2,
     },
     {
       value: "< 1s",
-      label: "Instant Seek",
-      description: "Two-stage chapter & transcript resolution directly to the second.",
+      label: "Direct Seek Time",
+      description: "Two-stage chapter & transcript resolution down to the exact second.",
       icon: FastForward,
     },
     {
@@ -29,30 +29,39 @@ export function MetricsStrip() {
   ];
 
   return (
-    <section className="border-y border-neutral-200 bg-surface px-6 py-12 sm:px-12 xl:px-18">
-      <div className="flex flex-col gap-8">
-        <div className="flex flex-col items-center justify-between gap-2 sm:flex-row">
+    <section className="border-y border-neutral-200/80 bg-surface">
+      <div className="mx-auto max-w-7xl px-6 py-10 sm:px-12 xl:px-18">
+        {/* Subtle credibility banner */}
+        <div className="flex flex-col items-center justify-between gap-3 pb-8 text-center sm:flex-row sm:text-left">
           <p className="text-[12px] font-semibold tracking-wider text-neutral-500 uppercase">
-            Platform Capabilities & Verified Quality
+            Platform Benchmarks & Verified Precision
           </p>
-          <span className="text-[12px] text-neutral-500">
-            Trusted by self-directed software engineers
-          </span>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-[12px] text-neutral-500">
+            <span className="flex items-center gap-1.5">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Verified Sanity Context MCP
+            </span>
+            <span>•</span>
+            <span>Clerk Protected State</span>
+            <span>•</span>
+            <span>Zero Hallucination Guarantee</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Hairline-Divided Metric Row */}
+        <div className="grid grid-cols-1 divide-y divide-neutral-200/80 border-t border-neutral-200/80 sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
           {metrics.map((metric, i) => {
             const Icon = metric.icon;
             return (
               <div
                 key={i}
-                className="group relative flex flex-col justify-between rounded-lg border border-neutral-200/80 bg-canvas p-6 transition-all duration-150 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-xs"
+                className="flex flex-col justify-between p-6 transition-colors hover:bg-neutral-50/50"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-sans text-[32px] font-extrabold tracking-tight text-neutral-900 tabular-nums">
+                  <span className="font-sans text-[36px] font-extrabold tracking-tight text-neutral-900 tabular-nums">
                     {metric.value}
                   </span>
-                  <div className="flex size-8 items-center justify-center rounded-md bg-neutral-100 text-neutral-700 transition-colors group-hover:bg-primary-50 group-hover:text-primary-600">
+                  <div className="flex size-8 items-center justify-center rounded-md bg-neutral-100 text-neutral-700">
                     <Icon className="size-4" strokeWidth={2} aria-hidden />
                   </div>
                 </div>
